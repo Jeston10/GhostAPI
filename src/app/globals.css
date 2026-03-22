@@ -123,8 +123,32 @@
   }
   body {
     @apply bg-background text-foreground;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  body::-webkit-scrollbar {
+    display: none;
   }
   html {
     @apply font-sans;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
+  html::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Sonner: pin close top-right so long descriptions don’t push it below the viewport */
+[data-sonner-toast] {
+  position: relative !important;
+  padding-right: 2.5rem !important;
+}
+
+[data-sonner-toast] [data-close-button] {
+  position: absolute !important;
+  top: 0.5rem !important;
+  right: 0.5rem !important;
+  transform: none !important;
+  margin: 0 !important;
 }
