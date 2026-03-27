@@ -139,16 +139,12 @@
   }
 }
 
-/* Sonner: pin close top-right so long descriptions don’t push it below the viewport */
-[data-sonner-toast] {
-  position: relative !important;
-  padding-right: 2.5rem !important;
-}
-
+/* Keep Sonner close button visible and properly placed. */
 [data-sonner-toast] [data-close-button] {
-  position: absolute !important;
-  top: 0.5rem !important;
-  right: 0.5rem !important;
+  top: 0.75rem !important;
+  right: 0.75rem !important;
+  left: auto !important;
   transform: none !important;
-  margin: 0 !important;
+  opacity: 1 !important;
+  z-index: 2 !important;
 }

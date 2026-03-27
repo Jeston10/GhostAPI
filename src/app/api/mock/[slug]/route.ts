@@ -1,4 +1,8 @@
-import { generateFromSchema, mergeRequestIntoGenerated } from "@/lib/mock-generate";
+import {
+  generateFromSchema,
+  isInvalidGenerationResult,
+  mergeRequestIntoGenerated,
+} from "@/lib/mock-generate";
 import { getDb } from "@/lib/mongodb";
 import { mockEndpointsColl } from "@/lib/mock-endpoints";
 import { NextResponse } from "next/server";
@@ -6,6 +10,23 @@ import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 
 type RouteCtx = { params: Promise<{ slug: string }> };
+
+export async function OPTIONS(_req: Request, ctx: RouteCtx) {
+  const { slug } = await ctx.params;
+  if (!slug || typeof slug !== "string") {
+    return new NextResponse(null, { status: 404 });
+  }
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      Allow: "GET, POST, OPTIONS",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+      "Access-Control-Max-Age": "86400",
+    },
+  });
+}
 
 export async function GET(_req: Request, ctx: RouteCtx) {
   const { slug } = await ctx.params;
@@ -33,8 +54,16 @@ export async function GET(_req: Request, ctx: RouteCtx) {
     );
   }
 
-  const data = generateFromSchema(doc.responseFormat);
-  return NextResponse.json(data);
+  const data = generateFromSchema(doc.responseFormat, { seed: doc.slug });
+  if (isInvalidGenerationResult(data)) {
+    return NextResponse.json(
+      { error: data.error, detail: data.hint },
+      { status: 500 }
+    );
+  }
+  return NextResponse.json(data, {
+    headers: { "Access-Control-Allow-Origin": "*" },
+  });
 }
 
 export async function POST(req: Request, ctx: RouteCtx) {
@@ -65,22 +94,10 @@ export async function POST(req: Request, ctx: RouteCtx) {
 
   const rawBody = await req.text();
   const trimmed = rawBody.trim();
+  let parsedBody: unknown | undefined;
   if (trimmed !== "") {
     try {
-      const parsed = JSON.parse(trimmed) as unknown;
-      if (
-        typeof parsed !== "object" ||
-        parsed === null ||
-        Array.isArray(parsed)
-      ) {
-        return NextResponse.json(
-          {
-            error: "body_must_be_json_object",
-            detail: "POST body must be a JSON object, e.g. {\"key\":\"value\"}",
-          },
-          { status: 400 }
-        );
-      }
+      parsedBody = JSON.parse(trimmed) as unknown;
     } catch {
       return NextResponse.json(
         { error: "invalid_json_body", detail: "Body is not valid JSON" },
@@ -89,6 +106,16 @@ export async function POST(req: Request, ctx: RouteCtx) {
     }
   }
 
-  const data = mergeRequestIntoGenerated(doc.responseFormat, rawBody);
-  return NextResponse.json(data);
+  const data = mergeRequestIntoGenerated(doc.responseFormat, parsedBody, {
+    seed: doc.slug,
+  });
+  if (isInvalidGenerationResult(data)) {
+    return NextResponse.json(
+      { error: data.error, detail: data.hint },
+      { status: 500 }
+    );
+  }
+  return NextResponse.json(data, {
+    headers: { "Access-Control-Allow-Origin": "*" },
+  });
 }

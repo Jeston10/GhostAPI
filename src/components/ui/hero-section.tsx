@@ -297,7 +297,7 @@ export default function HeroSection() {
             <div>
               <GhostApiLogo heightClass="h-9 md:h-10" className="mx-auto md:mx-0" />
               <p className="mt-4 max-w-xs text-sm text-slate-300 md:mt-5">
-                Instant mock APIs from schema — bridge frontend and backend
+                Instant mock APIs from schema, Bridge frontend and backend
                 workflows without waiting on the server.
               </p>
             </div>

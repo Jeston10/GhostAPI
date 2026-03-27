@@ -1,6 +1,6 @@
 import {
   validateOptionalJsonDocument,
-  validateResponseSchemaShape,
+  validateRequiredJsonDocument,
 } from "@/lib/mock-schema-validate";
 import { getDb } from "@/lib/mongodb";
 import {
@@ -40,38 +40,20 @@ export async function POST(req: Request) {
   }
 
   const rawResponse = body.responseFormat;
-  if (typeof rawResponse !== "string" || !rawResponse.trim()) {
+  if (typeof rawResponse !== "string") {
     return NextResponse.json(
       { error: "response_format_required" },
       { status: 400 }
     );
   }
 
-  let parsed: unknown;
-  try {
-    parsed = JSON.parse(rawResponse) as unknown;
-  } catch {
+  const responseJsonErr = validateRequiredJsonDocument(
+    rawResponse,
+    "responseFormat"
+  );
+  if (responseJsonErr) {
     return NextResponse.json(
-      { error: "response_format_invalid_json" },
-      { status: 400 }
-    );
-  }
-
-  if (
-    typeof parsed !== "object" ||
-    parsed === null ||
-    Array.isArray(parsed)
-  ) {
-    return NextResponse.json(
-      { error: "response_format_must_be_object" },
-      { status: 400 }
-    );
-  }
-
-  const shapeError = validateResponseSchemaShape(parsed);
-  if (shapeError) {
-    return NextResponse.json(
-      { error: "invalid_response_schema", detail: shapeError },
+      { error: "response_format_invalid_json", detail: responseJsonErr },
       { status: 400 }
     );
   }

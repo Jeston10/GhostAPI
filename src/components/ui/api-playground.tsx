@@ -2,7 +2,7 @@
 
 import {
   validateOptionalJsonDocument,
-  validateResponseSchemaShape,
+  validateRequiredJsonDocument,
 } from "@/lib/mock-schema-validate";
 import { cn } from "@/lib/utils";
 import { Check, ChevronDown, Copy, Play, RotateCcw } from "lucide-react";
@@ -95,29 +95,12 @@ export function ApiPlayground() {
       return;
     }
 
-    let parsedResponse: unknown;
-    try {
-      parsedResponse = JSON.parse(responseFormat) as unknown;
-    } catch {
-      toast.error("Invalid JSON", {
-        description: "Response format must be valid JSON.",
-      });
-      return;
-    }
-    if (
-      typeof parsedResponse !== "object" ||
-      parsedResponse === null ||
-      Array.isArray(parsedResponse)
-    ) {
-      toast.error("Invalid response shape", {
-        description:
-          "Use a single JSON object { ... }, not an array or primitive.",
-      });
-      return;
-    }
-    const shapeErr = validateResponseSchemaShape(parsedResponse);
-    if (shapeErr) {
-      toast.error("Invalid response schema", { description: shapeErr });
+    const responseJsonErr = validateRequiredJsonDocument(
+      responseFormat,
+      "Response format"
+    );
+    if (responseJsonErr) {
+      toast.error("Invalid response format", { description: responseJsonErr });
       return;
     }
 
@@ -171,25 +154,7 @@ export function ApiPlayground() {
     const bodyPayload = testRequestBody.trim() || "{}";
     if (isPost) {
       try {
-        const parsed = JSON.parse(bodyPayload) as unknown;
-        if (
-          typeof parsed !== "object" ||
-          parsed === null ||
-          Array.isArray(parsed)
-        ) {
-          toast.error("Invalid request body", {
-            description:
-              "POST test body must be a JSON object, e.g. {\"id\":\"custom\"}.",
-          });
-          setTestRun({
-            status: 0,
-            durationMs: 0,
-            requestRaw: `${method} ${displayUrl}\n(invalid body)`,
-            responseRaw:
-              "Test request body must be a JSON object, e.g. {\"userId\":\"string\"}",
-          });
-          return;
-        }
+        JSON.parse(bodyPayload);
       } catch {
         toast.error("Invalid JSON", {
           description: "Test request body is not valid JSON.",
@@ -269,8 +234,8 @@ export function ApiPlayground() {
       </h2>
       <p className="mx-auto mt-3 max-w-2xl text-center text-sm text-slate-600 md:text-base">
         Pick <span className="font-medium">GET</span> or <span className="font-medium">POST</span>,
-        define formats, Submit, then Test — the same method is used for your mock URL. POST
-        sends the test body and merges it into the generated response.
+        define formats, then Submit and Test. POST sends the test body and merges it into the
+        generated response.
       </p>
 
       <div className="mt-8 border border-slate-300 bg-white shadow-sm md:mt-10">
@@ -314,7 +279,7 @@ export function ApiPlayground() {
           </div>
         </div>
 
-        {/* Generation: shapes used when you Submit to provision the API */}
+        {/* Generation: values used when you Submit to provision the API */}
         <div className="border-b border-slate-200 bg-slate-100/80 px-3 py-1.5">
           <p className="text-[0.7rem] font-medium uppercase tracking-wide text-slate-500 md:text-xs">
             API generation — request/response formats are stored in MongoDB for this mock
@@ -326,7 +291,7 @@ export function ApiPlayground() {
               <span className="text-xs font-semibold uppercase tracking-wider text-[#050040]">
                 Request format
               </span>
-              <span className="text-xs text-slate-400">Shape / JSON</span>
+              <span className="text-xs text-slate-400">Any valid JSON</span>
             </div>
             <textarea
               value={requestFormat}
@@ -341,14 +306,14 @@ export function ApiPlayground() {
               <span className="text-xs font-semibold uppercase tracking-wider text-[#050040]">
                 Response format
               </span>
-              <span className="text-xs text-slate-400">Schema shape</span>
+              <span className="text-xs text-slate-400">Any valid JSON</span>
             </div>
             <textarea
               value={responseFormat}
               onChange={(e) => setResponseFormat(e.target.value)}
               spellCheck={false}
               className="min-h-[168px] w-full resize-y border-0 bg-[#fafafa] p-3 font-mono text-xs leading-relaxed text-slate-800 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#050040]/20 md:min-h-[220px] md:p-3.5 md:text-sm"
-              aria-label="Response format schema"
+              aria-label="Response format for API generation"
             />
           </div>
         </div>
@@ -364,7 +329,7 @@ export function ApiPlayground() {
               {urlPhase === "resolving" ? "Provisioning…" : "Submit"}
             </button>
             <span className="text-xs text-slate-500 md:text-sm">
-              Creates a public GET or POST mock on this app (saved in MongoDB).
+              Creates a public GET or POST mock on this app.
             </span>
           </div>
         </div>
@@ -430,7 +395,7 @@ export function ApiPlayground() {
                 <span className="text-xs text-slate-500">
                   {method === "GET"
                     ? "GET mocks do not send a body."
-                    : "JSON body for Test (merged into the generated response). Use {} if you only want generation."}
+                    : "Any JSON value for Test. Objects are merged into generated object responses."}
                 </span>
               </div>
               <textarea
