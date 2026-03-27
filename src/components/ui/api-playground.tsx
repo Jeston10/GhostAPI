@@ -282,7 +282,7 @@ export function ApiPlayground() {
         {/* Generation: values used when you Submit to provision the API */}
         <div className="border-b border-slate-200 bg-slate-100/80 px-3 py-1.5">
           <p className="text-[0.7rem] font-medium uppercase tracking-wide text-slate-500 md:text-xs">
-            API generation — request/response formats are stored in MongoDB for this mock
+            API generation — request/response formats
           </p>
         </div>
         <div className="grid divide-y divide-slate-300 md:grid-cols-2 md:divide-x md:divide-y-0">
