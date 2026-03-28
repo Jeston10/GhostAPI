@@ -113,7 +113,7 @@ export const ProductHighlightCard = React.forwardRef<
               <div className="relative z-10 flex min-h-0 flex-1 flex-col justify-start gap-3 p-5 pb-16 md:p-6 md:pb-20">
                 <div className="flex items-center gap-2 text-[#050040]">
                   <span className="shrink-0 text-[#050040]">{categoryIcon}</span>
-                  <span className="text-xs font-semibold tracking-wide uppercase md:text-sm">
+                  <span className="text-xs font-bold tracking-wide uppercase md:text-sm">
                     {category}
                   </span>
                 </div>
@@ -122,11 +122,11 @@ export const ProductHighlightCard = React.forwardRef<
                   {titleSlot != null ? (
                     titleSlot
                   ) : (
-                    <h3 className="text-2xl font-bold tracking-tight md:text-3xl">
+                    <h3 className="text-2xl font-extrabold tracking-tight md:text-3xl">
                       {title}
                     </h3>
                   )}
-                  <p className="mt-2 text-xs leading-relaxed text-slate-600 md:text-sm">
+                  <p className="mt-2 text-xs font-medium leading-relaxed text-slate-700 md:text-sm">
                     {description}
                   </p>
                 </div>

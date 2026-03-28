@@ -1,0 +1,24 @@
+{
+  "entries": [
+    {
+      "API": "Sample JSON (placeholder)",
+      "Description": "Offline fixture when live catalogs are unreachable.",
+      "Auth": "No",
+      "HTTPS": "Yes",
+      "Cors": "Yes",
+      "Link": "https://httpbin.org/json",
+      "Category": "Development"
+    },
+    {
+      "API": "HTTPBin UUID",
+      "Description": "Returns JSON — good for proxy smoke tests.",
+      "Auth": "No",
+      "HTTPS": "Yes",
+      "Cors": "Yes",
+      "Link": "https://httpbin.org/uuid",
+      "Category": "Development"
+    }
+  ],
+  "categories": ["Development"],
+  "source": "local-fixture"
+}

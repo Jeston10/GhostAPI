@@ -12,6 +12,9 @@
 
 # testing
 /coverage
+/test-results
+/playwright-report
+/blob-report
 *.lcov
 
 # next.js
@@ -53,7 +56,14 @@ next-env.d.ts
 # OS
 Thumbs.db
 Desktop.ini
+ehthumbs.db
 
-# optional: local IDE (remove leading # if you never commit shared editor config)
+# editors (local)
+.idea/
+*.swp
+*.swo
+*~
+
+# optional: local IDE — uncomment if you never commit shared editor config
 # .vscode/
-# .idea/
+# !.vscode/extensions.json

@@ -4,23 +4,14 @@ import { ApiPlayground } from "@/components/ui/api-playground";
 import { GhostApiLogo } from "@/components/ui/ghost-api-logo";
 import { GhostApiWorkflowBlock } from "@/components/ui/n8n-workflow-block-shadcnui";
 import { ProductHighlightCard } from "@/components/ui/product-card";
-import { Poppins } from "next/font/google";
+import { HERO_GRID_BACKGROUND } from "@/lib/hero-theme";
 import { Braces, Ghost, LayoutTemplate, Zap } from "lucide-react";
+import Link from "next/link";
 import React from "react";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  display: "swap",
-});
-
-const HERO_GRID_BG =
-  "https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/hero/gridBackground.png";
 
 export default function HeroSection() {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const menuRef = React.useRef<HTMLDivElement | null>(null);
-
   React.useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "Escape") setMenuOpen(false);
@@ -49,39 +40,42 @@ export default function HeroSection() {
   return (
     <>
       <section
-        className={`${poppins.className} w-full bg-cover bg-center bg-no-repeat pb-44 text-sm`}
-        style={{ backgroundImage: `url('${HERO_GRID_BG}')` }}
+        className="w-full bg-cover bg-center bg-no-repeat pb-44 text-sm font-sans text-[#050040]"
+        style={{ backgroundImage: `url('${HERO_GRID_BACKGROUND}')` }}
       >
-        <nav className="flex w-full items-center justify-between p-4 md:px-16 md:py-6 lg:px-24 xl:px-32">
-          <a
-            href="#"
+        <nav className="flex w-full items-center justify-between p-4 text-slate-800 md:px-16 md:py-6 lg:px-24 xl:px-32">
+          <Link
+            href="/"
             aria-label="GhostAPI home"
             className="inline-flex shrink-0 items-center leading-none"
           >
             <GhostApiLogo priority heightClass="h-7 md:h-16 lg:h-20 xl:h-24" />
-          </a>
+          </Link>
 
           <div
             id="menu"
             ref={menuRef}
             className={[
               "max-md:absolute max-md:top-0 max-md:left-0 max-md:h-full max-md:overflow-hidden max-md:bg-white/50 max-md:backdrop-blur max-md:transition-all max-md:duration-300",
-              "flex items-center gap-8 font-medium",
+              "flex items-center gap-8 font-semibold",
               "max-md:flex-col max-md:justify-center",
               menuOpen ? "max-md:w-full" : "max-md:w-0",
             ].join(" ")}
             aria-hidden={!menuOpen}
           >
-            <a href="#" className="hover:text-gray-600">
+            <a href="#" className="transition-colors hover:text-gray-600">
               Home
             </a>
-            <a href="#about" className="hover:text-gray-600">
+            <a href="#about" className="transition-colors hover:text-gray-600">
               About
             </a>
-            <a href="#playground" className="hover:text-gray-600">
+            <Link href="/api-hub" className="transition-colors hover:text-gray-600">
+              API Hub
+            </Link>
+            <a href="#playground" className="transition-colors hover:text-gray-600">
               Playground
             </a>
-            <a href="#flow" className="hover:text-gray-600">
+            <a href="#flow" className="transition-colors hover:text-gray-600">
               How it works
             </a>
 
@@ -143,7 +137,7 @@ export default function HeroSection() {
         </nav>
 
         <div className="mx-auto mt-40 flex w-max max-w-[calc(100%-2rem)] items-center gap-5 rounded-full border border-slate-300 px-4 py-2 pr-2 hover:border-slate-400/70 md:mt-32 md:gap-8 md:px-5 md:py-2.5 md:pr-2.5">
-          <span className="min-w-0 text-center text-xs leading-snug md:text-left md:text-sm">
+          <span className="min-w-0 text-center text-xs font-medium leading-snug text-slate-800 md:text-left md:text-sm">
             Mock APIs in seconds — Define a schema and get a live endpoint
           </span>
           <a
@@ -171,11 +165,11 @@ export default function HeroSection() {
           </a>
         </div>
 
-        <h1 className="mx-auto mt-8 max-w-[850px] px-4 text-center text-4xl font-medium text-[#050040] md:text-7xl">
+        <h1 className="mx-auto mt-8 max-w-[850px] px-4 text-center text-4xl font-extrabold leading-[1.08] tracking-tight text-[#050040] md:text-7xl md:leading-[1.06]">
           Working mock APIs without a Backend
         </h1>
 
-        <p className="mx-auto mt-6 max-w-2xl text-center text-sm max-md:px-2 md:text-base">
+        <p className="mx-auto mt-6 max-w-2xl text-center text-sm font-medium leading-relaxed text-slate-700 max-md:px-2 md:text-lg">
           Define your JSON shape; every request returns fresh, realistic mocks.
           Ship the frontend against a live endpoint while the real backend
           catches up.
@@ -184,13 +178,13 @@ export default function HeroSection() {
         <div className="mx-auto mt-4 flex w-full flex-wrap items-center justify-center gap-3 px-4">
           <a
             href="#playground"
-            className="rounded-full bg-slate-800 px-6 py-3 font-medium text-white transition hover:bg-black"
+            className="rounded-full bg-slate-800 px-6 py-3 font-semibold text-white transition hover:bg-black"
           >
             Get started
           </a>
           <a
             href="#about"
-            className="flex items-center gap-2 rounded-full border border-slate-300 px-6 py-3 hover:bg-slate-200/30"
+            className="flex items-center gap-2 rounded-full border border-slate-300 px-6 py-3 font-semibold text-slate-800 transition hover:bg-slate-200/30"
           >
             <span>Learn more</span>
             <svg
@@ -213,17 +207,15 @@ export default function HeroSection() {
         </div>
       </section>
 
-      <div
-        className={`${poppins.className} bg-slate-50 text-[#050040]`}
-      >
+      <div className="bg-slate-50 font-sans text-[#050040]">
         <section
           id="about"
           className="mx-auto max-w-6xl scroll-mt-24 px-4 py-16 md:py-24"
         >
-          <h2 className="text-center text-3xl font-semibold tracking-tight text-[#050040] md:text-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-[#050040] md:text-4xl">
             Get to know more about GhostAPI
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-base text-slate-600 md:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-center text-base font-medium leading-relaxed text-slate-700 md:text-lg">
             Lightweight mock endpoints from schema. Realistic data on every call,
             so your UI can move before production APIs exist.
           </p>
@@ -281,10 +273,10 @@ export default function HeroSection() {
           id="flow"
           className="mx-auto max-w-[min(100%,1320px)] scroll-mt-24 overflow-x-hidden px-4 py-16 md:py-24"
         >
-          <h2 className="text-center text-3xl font-semibold tracking-tight text-[#050040] md:text-4xl">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-[#050040] md:text-4xl">
             Get to know how GhostAPI works
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-slate-600">
+          <p className="mx-auto mt-4 max-w-2xl text-center font-medium text-slate-700">
             Five steps from schema to live Mocks
           </p>
           <div className="mt-10">
@@ -296,15 +288,18 @@ export default function HeroSection() {
           <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center md:flex-row md:items-start md:justify-between md:text-left">
             <div>
               <GhostApiLogo heightClass="h-9 md:h-10" className="mx-auto md:mx-0" />
-              <p className="mt-4 max-w-xs text-sm text-slate-300 md:mt-5">
+              <p className="mt-4 max-w-xs text-sm font-medium leading-relaxed text-slate-300 md:mt-5">
                 Instant mock APIs from schema, Bridge frontend and backend
                 workflows without waiting on the server.
               </p>
             </div>
-            <nav className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm font-medium text-slate-300 md:justify-end">
+            <nav className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm font-semibold text-slate-300 md:justify-end">
               <a href="#about" className="transition hover:text-white">
                 About
               </a>
+              <Link href="/api-hub" className="transition hover:text-white">
+                API Hub
+              </Link>
               <a href="#playground" className="transition hover:text-white">
                 Playground
               </a>

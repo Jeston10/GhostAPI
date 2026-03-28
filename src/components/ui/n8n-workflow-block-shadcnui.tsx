@@ -326,19 +326,19 @@ export function GhostApiWorkflowBlock() {
                           <div className="min-w-0 flex-1">
                             <Badge
                               variant="outline"
-                              className="mb-0.5 rounded-full border-slate-200 bg-slate-50 px-1.5 py-0 text-[10px] font-semibold tracking-wide text-slate-600 uppercase"
+                              className="mb-0.5 rounded-full border-slate-200 bg-slate-50 px-1.5 py-0 text-[10px] font-bold tracking-wide text-slate-700 uppercase"
                             >
                               {node.step}
                             </Badge>
-                            <h3 className="text-sm font-semibold leading-snug tracking-tight text-[#050040]">
+                            <h3 className="text-sm font-bold leading-snug tracking-tight text-[#050040]">
                               {node.title}
                             </h3>
                           </div>
                         </div>
-                        <p className="text-[11px] leading-relaxed text-slate-600 sm:text-xs">
+                        <p className="text-[11px] font-medium leading-relaxed text-slate-700 sm:text-xs">
                           {node.description}
                         </p>
-                        <div className="flex items-center gap-1.5 text-[10px] font-medium tracking-wide text-slate-500 uppercase sm:text-xs">
+                        <div className="flex items-center gap-1.5 text-[10px] font-semibold tracking-wide text-slate-600 uppercase sm:text-xs">
                           <ArrowRight className="h-3 w-3 shrink-0" aria-hidden />
                           <span>
                             {node.id === "node-5" ? "Outcome" : "Next"}

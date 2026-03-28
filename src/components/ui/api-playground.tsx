@@ -1,6 +1,10 @@
 "use client";
 
 import {
+  PLAYGROUND_PREFILL_STORAGE_KEY,
+  type PlaygroundPrefillPayload,
+} from "@/lib/playground-prefill";
+import {
   validateOptionalJsonDocument,
   validateRequiredJsonDocument,
 } from "@/lib/mock-schema-validate";
@@ -64,10 +68,23 @@ function errorFromResponseBody(text: string, status: number): string {
   return `Request failed (${status})`;
 }
 
-export function ApiPlayground() {
+export type ApiPlaygroundProps = {
+  /** When set (e.g. from API Hub), replaces the request/response editor contents. */
+  initialRequestFormat?: string;
+  initialResponseFormat?: string;
+};
+
+export function ApiPlayground({
+  initialRequestFormat,
+  initialResponseFormat,
+}: ApiPlaygroundProps) {
   const [method, setMethod] = React.useState<HttpMethod>("GET");
-  const [requestFormat, setRequestFormat] = React.useState(DEFAULT_REQUEST);
-  const [responseFormat, setResponseFormat] = React.useState(DEFAULT_RESPONSE);
+  const [requestFormat, setRequestFormat] = React.useState(
+    () => initialRequestFormat ?? DEFAULT_REQUEST
+  );
+  const [responseFormat, setResponseFormat] = React.useState(
+    () => initialResponseFormat ?? DEFAULT_RESPONSE
+  );
   const [urlPhase, setUrlPhase] = React.useState<"idle" | "resolving" | "ready">(
     "idle"
   );
@@ -81,6 +98,23 @@ export function ApiPlayground() {
     responseRaw: string;
   } | null>(null);
   const [copied, setCopied] = React.useState(false);
+
+  React.useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem(PLAYGROUND_PREFILL_STORAGE_KEY);
+      if (!raw) return;
+      sessionStorage.removeItem(PLAYGROUND_PREFILL_STORAGE_KEY);
+      const parsed = JSON.parse(raw) as PlaygroundPrefillPayload;
+      if (typeof parsed.request === "string" && parsed.request.length > 0) {
+        setRequestFormat(parsed.request);
+      }
+      if (typeof parsed.response === "string" && parsed.response.length > 0) {
+        setResponseFormat(parsed.response);
+      }
+    } catch {
+      /* ignore */
+    }
+  }, []);
 
   const handleSubmit = async () => {
     setTestRun(null);
@@ -229,11 +263,12 @@ export function ApiPlayground() {
 
   return (
     <div className="mx-auto w-full max-w-6xl">
-      <h2 className="text-center text-3xl font-semibold tracking-tight text-[#050040] md:text-4xl">
+      <h2 className="text-center text-3xl font-bold tracking-tight text-[#050040] md:text-4xl">
         Playground
       </h2>
-      <p className="mx-auto mt-3 max-w-2xl text-center text-sm text-slate-600 md:text-base">
-        Pick <span className="font-medium">GET</span> or <span className="font-medium">POST</span>,
+      <p className="mx-auto mt-3 max-w-2xl text-center text-sm font-medium leading-relaxed text-slate-700 md:text-base">
+        Pick <span className="font-semibold text-[#050040]">GET</span> or{" "}
+        <span className="font-semibold text-[#050040]">POST</span>,
         define formats, then Submit and Test. POST sends the test body and merges it into the
         generated response.
       </p>
@@ -268,8 +303,8 @@ export function ApiPlayground() {
               aria-hidden
             />
           </label>
-          <div className="flex min-w-0 flex-1 items-center px-3 text-sm text-slate-500">
-            <span className="truncate font-mono text-xs text-slate-400 md:text-sm">
+          <div className="flex min-w-0 flex-1 items-center px-3 text-sm font-medium text-slate-600">
+            <span className="truncate font-mono text-xs text-slate-500 md:text-sm">
               {urlPhase === "idle"
                 ? "Submit to provision mock URL"
                 : urlPhase === "resolving"
@@ -288,10 +323,10 @@ export function ApiPlayground() {
         <div className="grid divide-y divide-slate-300 md:grid-cols-2 md:divide-x md:divide-y-0">
           <div className="flex min-h-0 flex-col bg-white">
             <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-3 py-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#050040]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#050040]">
                 Request format
               </span>
-              <span className="text-xs text-slate-400">Any valid JSON</span>
+              <span className="text-xs font-medium text-slate-500">Any valid JSON</span>
             </div>
             <textarea
               value={requestFormat}
@@ -303,10 +338,10 @@ export function ApiPlayground() {
           </div>
           <div className="flex min-h-0 flex-col bg-white">
             <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-3 py-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#050040]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#050040]">
                 Response format
               </span>
-              <span className="text-xs text-slate-400">Any valid JSON</span>
+              <span className="text-xs font-medium text-slate-500">Any valid JSON</span>
             </div>
             <textarea
               value={responseFormat}
@@ -324,11 +359,11 @@ export function ApiPlayground() {
               type="button"
               onClick={() => void handleSubmit()}
               disabled={urlPhase === "resolving"}
-              className="rounded-sm bg-[#050040] px-4 py-1.5 text-sm font-medium text-white transition hover:bg-[#070052] disabled:opacity-60"
+              className="rounded-sm bg-[#050040] px-4 py-1.5 text-sm font-semibold text-white transition hover:bg-[#070052] disabled:opacity-60"
             >
               {urlPhase === "resolving" ? "Provisioning…" : "Submit"}
             </button>
-            <span className="text-xs text-slate-500 md:text-sm">
+            <span className="text-xs font-medium text-slate-600 md:text-sm">
               Creates a public GET or POST mock on this app.
             </span>
           </div>
@@ -337,7 +372,7 @@ export function ApiPlayground() {
         {urlPhase !== "idle" && (
           <div className="border-t border-slate-300 bg-white px-3 py-3">
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <div className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+              <div className="text-xs font-bold uppercase tracking-wider text-slate-600">
                 Your API
               </div>
               {urlPhase === "ready" ? (
@@ -389,10 +424,10 @@ export function ApiPlayground() {
 
             <div className="mt-4 border border-slate-200 bg-slate-50/50">
               <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2">
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#050040]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#050040]">
                   Test request body
                 </span>
-                <span className="text-xs text-slate-500">
+                <span className="text-xs font-medium text-slate-600">
                   {method === "GET"
                     ? "GET mocks do not send a body."
                     : "Any JSON value for Test. Objects are merged into generated object responses."}
@@ -427,7 +462,7 @@ export function ApiPlayground() {
           <div className="border-t border-slate-300 bg-slate-50">
             <div className="border-b border-slate-200 px-3 py-2.5">
               <div className="flex flex-wrap items-center gap-3">
-                <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-600">
                   Result
                 </span>
                 <span
@@ -438,26 +473,26 @@ export function ApiPlayground() {
                 >
                   {testRun.status}
                 </span>
-                <span className="text-xs text-slate-500 md:text-sm">
+                <span className="text-xs font-medium text-slate-600 md:text-sm">
                   {testRun.durationMs} ms
                 </span>
                 <button
                   type="button"
                   onClick={() => void runTest()}
                   disabled={urlPhase !== "ready"}
-                  className="inline-flex h-9 items-center gap-1.5 rounded-sm border border-slate-300 bg-white px-3 text-sm font-medium text-[#050040] transition hover:bg-slate-50 disabled:opacity-50 md:ml-auto"
+                  className="inline-flex h-9 items-center gap-1.5 rounded-sm border border-slate-300 bg-white px-3 text-sm font-semibold text-[#050040] transition hover:bg-slate-50 disabled:opacity-50 md:ml-auto"
                 >
                   <RotateCcw className="size-3.5" aria-hidden />
                   Retest
                 </button>
               </div>
-              <p className="mt-1.5 text-xs text-slate-400 md:text-sm">
+              <p className="mt-1.5 text-xs font-medium text-slate-600 md:text-sm">
                 Live response from your mock URL — status and body come from the server
               </p>
             </div>
             <div className="grid divide-y divide-slate-200 md:grid-cols-2 md:divide-x md:divide-y-0">
               <div className="min-h-0">
-                <div className="bg-white px-3 py-2 text-xs font-medium uppercase tracking-wide text-slate-500">
+                <div className="bg-white px-3 py-2 text-xs font-bold uppercase tracking-wide text-slate-600">
                   Request sent
                 </div>
                 <pre className="max-h-60 overflow-auto whitespace-pre-wrap break-all border-t border-slate-100 bg-[#fafafa] p-3 font-mono text-xs leading-relaxed text-slate-800 md:max-h-80 md:p-3.5 md:text-sm">
@@ -465,7 +500,7 @@ export function ApiPlayground() {
                 </pre>
               </div>
               <div className="min-h-0">
-                <div className="bg-white px-3 py-2 text-xs font-medium uppercase tracking-wide text-slate-500">
+                <div className="bg-white px-3 py-2 text-xs font-bold uppercase tracking-wide text-slate-600">
                   Response received
                 </div>
                 <pre className="max-h-60 overflow-auto whitespace-pre-wrap break-all border-t border-slate-100 bg-[#fafafa] p-3 font-mono text-xs leading-relaxed text-slate-800 md:max-h-80 md:p-3.5 md:text-sm">
