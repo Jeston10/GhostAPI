@@ -86,6 +86,32 @@ describe("POST /api/free-apis/try", () => {
     const [calledUrl, init] = fetchMock.mock.calls[0] as [string, RequestInit];
     expect(calledUrl).toBe("https://example.com/v1/test");
     expect(init.method).toBe("GET");
+    expect(init.body).toBeUndefined();
+  });
+
+  it("proxies POST with custom body and safe headers", async () => {
+    fetchMock.mockResolvedValue(
+      new Response("{}", {
+        status: 200,
+        headers: { "content-type": "application/json" },
+      })
+    );
+
+    const res = await POST(
+      makeRequest({
+        url: "https://example.com/v1/x",
+        method: "POST",
+        body: '{"hello":true}',
+        headers: { "X-Test": "1", Host: "ignored" },
+      })
+    );
+    expect(res.status).toBe(200);
+    const [, init] = fetchMock.mock.calls[0] as [string, RequestInit];
+    expect(init.method).toBe("POST");
+    expect(init.body).toBe('{"hello":true}');
+    const headers = init.headers as Record<string, string>;
+    expect(headers["X-Test"]).toBe("1");
+    expect(headers.Host).toBeUndefined();
   });
 
   it("returns 502 when fetch throws", async () => {

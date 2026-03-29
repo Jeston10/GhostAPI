@@ -1,140 +1,23 @@
 "use client";
 
+import { SiteNav } from "@/components/layout/site-nav";
 import { ApiPlayground } from "@/components/ui/api-playground";
-import { GhostApiLogo } from "@/components/ui/ghost-api-logo";
 import { GhostApiWorkflowBlock } from "@/components/ui/n8n-workflow-block-shadcnui";
 import { ProductHighlightCard } from "@/components/ui/product-card";
-import { HERO_GRID_BACKGROUND } from "@/lib/hero-theme";
+import { HERO_GRID_BACKGROUND, HERO_SECTION_CLASS } from "@/lib/hero-theme";
 import { Braces, Ghost, LayoutTemplate, Zap } from "lucide-react";
+import { GhostApiLogo } from "@/components/ui/ghost-api-logo";
 import Link from "next/link";
 import React from "react";
 
 export default function HeroSection() {
-  const [menuOpen, setMenuOpen] = React.useState(false);
-  const menuRef = React.useRef<HTMLDivElement | null>(null);
-  React.useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setMenuOpen(false);
-    }
-    function onClickOutside(e: MouseEvent) {
-      if (!menuRef.current) return;
-      if (menuRef.current.contains(e.target as Node)) return;
-      setMenuOpen(false);
-    }
-
-    if (menuOpen) {
-      document.addEventListener("keydown", onKey);
-      document.addEventListener("click", onClickOutside);
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.removeEventListener("click", onClickOutside);
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
-
   return (
     <>
       <section
-        className="w-full bg-cover bg-center bg-no-repeat pb-44 text-sm font-sans text-[#050040]"
+        className={HERO_SECTION_CLASS}
         style={{ backgroundImage: `url('${HERO_GRID_BACKGROUND}')` }}
       >
-        <nav className="flex w-full items-center justify-between p-4 text-slate-800 md:px-16 md:py-6 lg:px-24 xl:px-32">
-          <Link
-            href="/"
-            aria-label="GhostAPI home"
-            className="inline-flex shrink-0 items-center leading-none"
-          >
-            <GhostApiLogo priority heightClass="h-7 md:h-16 lg:h-20 xl:h-24" />
-          </Link>
-
-          <div
-            id="menu"
-            ref={menuRef}
-            className={[
-              "max-md:absolute max-md:top-0 max-md:left-0 max-md:h-full max-md:overflow-hidden max-md:bg-white/50 max-md:backdrop-blur max-md:transition-all max-md:duration-300",
-              "flex items-center gap-8 font-semibold",
-              "max-md:flex-col max-md:justify-center",
-              menuOpen ? "max-md:w-full" : "max-md:w-0",
-            ].join(" ")}
-            aria-hidden={!menuOpen}
-          >
-            <a href="#" className="transition-colors hover:text-gray-600">
-              Home
-            </a>
-            <a href="#about" className="transition-colors hover:text-gray-600">
-              About
-            </a>
-            <Link href="/api-hub" className="transition-colors hover:text-gray-600">
-              API Hub
-            </Link>
-            <a href="#playground" className="transition-colors hover:text-gray-600">
-              Playground
-            </a>
-            <a href="#flow" className="transition-colors hover:text-gray-600">
-              How it works
-            </a>
-
-            <button
-              type="button"
-              onClick={() => setMenuOpen(false)}
-              className="aspect-square rounded-md bg-gray-800 p-2 font-medium text-white transition hover:bg-black md:hidden"
-              aria-label="Close menu"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden
-              >
-                <path d="M18 6 6 18" />
-                <path d="m6 6 12 12" />
-              </svg>
-            </button>
-          </div>
-
-          <a
-            href="#playground"
-            className="hidden rounded-full bg-gray-800 px-6 py-3 font-medium text-white transition hover:bg-black md:inline-block"
-          >
-            Open playground
-          </a>
-
-          <button
-            id="open-menu"
-            type="button"
-            onClick={() => setMenuOpen(true)}
-            className="aspect-square rounded-md bg-gray-800 p-2 font-medium text-white transition hover:bg-black md:hidden"
-            aria-label="Open menu"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden
-            >
-              <path d="M4 12h16" />
-              <path d="M4 18h16" />
-              <path d="M4 6h16" />
-            </svg>
-          </button>
-        </nav>
+        <SiteNav currentPage="home" variant="hero" />
 
         <div className="mx-auto mt-40 flex w-max max-w-[calc(100%-2rem)] items-center gap-5 rounded-full border border-slate-300 px-4 py-2 pr-2 hover:border-slate-400/70 md:mt-32 md:gap-8 md:px-5 md:py-2.5 md:pr-2.5">
           <span className="min-w-0 text-center text-xs font-medium leading-snug text-slate-800 md:text-left md:text-sm">
@@ -170,7 +53,7 @@ export default function HeroSection() {
         </h1>
 
         <p className="mx-auto mt-6 max-w-2xl text-center text-sm font-medium leading-relaxed text-slate-700 max-md:px-2 md:text-lg">
-          Define your JSON shape; every request returns fresh, realistic mocks.
+          Define your JSON shape, every request returns fresh, realistic mocks.
           Ship the frontend against a live endpoint while the real backend
           catches up.
         </p>

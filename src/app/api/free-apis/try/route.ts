@@ -5,16 +5,21 @@ import {
   pruneStaleBuckets,
 } from "@/lib/rate-limit";
 import { logTryProxyEvent } from "@/lib/try-proxy-log";
+import { mergeTryProxyHeaders } from "@/lib/try-proxy-headers";
 import { isBlockedHost, isBlockedIpLiteral } from "@/lib/try-proxy-validate";
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
 const MAX_BODY_CHARS = 400_000;
+const MAX_REQUEST_BODY_CHARS = 100_000;
 
 type TryBody = {
   url?: string;
   method?: string;
+  headers?: Record<string, string>;
+  /** Raw body for POST (e.g. JSON string). */
+  body?: string;
 };
 
 export async function POST(req: Request) {
@@ -79,21 +84,29 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "method_not_allowed" }, { status: 400 });
   }
 
+  const userHeaders =
+    body.headers && typeof body.headers === "object" && !Array.isArray(body.headers)
+      ? (body.headers as Record<string, string>)
+      : undefined;
+  const merged = mergeTryProxyHeaders(userHeaders);
+
   const init: RequestInit = {
     method,
     redirect: "follow",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "User-Agent": "GhostAPI-Hub/1.0 (+https://github.com)",
-    },
+    headers: merged,
   };
 
   if (method === "POST") {
-    init.headers = {
-      ...init.headers,
-      "Content-Type": "application/json",
-    };
-    init.body = "{}";
+    let raw =
+      typeof body.body === "string" ? body.body : "{}";
+    if (raw.length > MAX_REQUEST_BODY_CHARS) {
+      raw = raw.slice(0, MAX_REQUEST_BODY_CHARS);
+    }
+    init.body = raw;
+    const hasCt = Object.keys(merged).some((k) => k.toLowerCase() === "content-type");
+    if (!hasCt) {
+      (init.headers as Record<string, string>)["Content-Type"] = "application/json";
+    }
   }
 
   try {
