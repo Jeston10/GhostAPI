@@ -69,7 +69,7 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
             API Hub
           </p>
           <h1 className="mt-2 max-w-4xl text-3xl font-extrabold tracking-tight text-[#050040] md:text-[2.125rem] md:leading-tight">
-            Explore <span className="text-yellow-500"> 500+ free APIs </span> with a launch-ready test console
+            Explore <span className="text-yellow-500"> 500+ free APIs </span> with a easy to use test console
           </h1>
           <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-slate-600 md:text-base">
             Browse <span className="font-semibold text-[#050040]/90">500+</span> public HTTPS APIs in a catalog
