@@ -5,7 +5,7 @@ import Link from "next/link";
 import * as React from "react";
 
 export type SiteNavProps = {
-  currentPage: "home" | "api-hub";
+  currentPage: "home" | "api-hub" | "tools";
   /** `hero` matches the landing hero bar; `compact` matches API Hub / inner pages. */
   variant?: "hero" | "compact";
 };
@@ -90,6 +90,17 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
         <a href={about} className="transition-colors hover:text-gray-600">
           About
         </a>
+        <Link
+          href="/tools"
+          className={
+            currentPage === "tools"
+              ? "text-[#050040]"
+              : "transition-colors hover:text-gray-600"
+          }
+          aria-current={currentPage === "tools" ? "page" : undefined}
+        >
+          Tools
+        </Link>
         <Link
           href="/api-hub"
           className={
