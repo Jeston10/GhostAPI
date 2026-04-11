@@ -18,6 +18,9 @@ export function SiteFooter() {
           <Link href="/#about" className="transition hover:text-white">
             About
           </Link>
+          <Link href="/tools" className="transition hover:text-white">
+            Tools
+          </Link>
           <Link href="/api-hub" className="transition hover:text-white">
             API Hub
           </Link>

@@ -145,6 +145,7 @@ export default function HeroSection() {
           </div>
         </section>
 
+
         <section
           id="playground"
           className="scroll-mt-24 border-y border-slate-200 bg-white px-4 py-12 md:py-16"
