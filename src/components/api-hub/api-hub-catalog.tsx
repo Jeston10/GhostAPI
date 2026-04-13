@@ -65,7 +65,7 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
     <>
       <section className="min-w-0 overflow-x-hidden bg-white">
         <div className="mx-auto max-w-6xl min-w-0 px-4 py-10 md:px-6 md:py-6">
-          <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#050040]/45">
+          <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-blue-500">
             API Hub
           </p>
           <h1 className="mt-2 max-w-4xl text-3xl font-extrabold tracking-tight text-[#050040] md:text-[2.125rem] md:leading-tight">

@@ -26,6 +26,8 @@ const TOOL_FEATURES = [
   },
 ] as const;
 
+const TOOL_FEATURES_LOOP = [...TOOL_FEATURES, ...TOOL_FEATURES];
+
 export default function ToolsPage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-slate-50 font-sans text-[#050040]">
@@ -36,31 +38,38 @@ export default function ToolsPage() {
       <main className="mx-auto w-full max-w-6xl px-4 pb-16 pt-8 md:pt-10">
         <section className="mb-8 min-w-0 overflow-x-hidden bg-white">
           <div className="mx-auto max-w-6xl min-w-0 px-4 py-10 md:px-6 md:py-4 lg:py-3">
-            <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#050040]/45">
+            <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-blue-500">
               Tools
             </p>
-            <h1 className="mt-2 max-w-4xl text-3xl font-extrabold tracking-tight text-[#050040] md:text-[2.125rem] md:leading-tight">
+            <h1 className="mt-2 max-w-5xl text-3xl font-extrabold tracking-tight text-[#050040] md:text-[2.125rem] md:leading-tight">
               Explore <span className="text-yellow-500">GhostAPI developer tools</span> for API testing,
               validation, and code generation
             </h1>
-            <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-slate-600 md:text-base">
+            <p className="mt-5 max-w-5xl text-[15px] leading-relaxed text-slate-600 md:text-base">
               Browse production-grade API utilities designed for fast prototyping, reliable validation, and
               copy-ready code generation. Convert API requests and responses into TypeScript types, Zod
               schemas, cURL commands, fetch snippets, Axios calls, and Python requests—ideal for developers,
               QA, and integration teams building with HTTP APIs.
             </p>
 
-            <ul className="mt-10 grid list-none gap-5 sm:grid-cols-2 xl:grid-cols-4 xl:gap-6">
-              {TOOL_FEATURES.map(({ icon: Icon, title, body }) => (
-                <li key={title} className="rounded-xl border border-slate-200/90 bg-slate-50/80 p-5 shadow-sm">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#050040]/[0.06] text-[#050040]">
-                    <Icon className="size-4" strokeWidth={2} aria-hidden />
-                  </div>
-                  <h2 className="mt-4 text-sm font-bold text-[#050040]">{title}</h2>
-                  <p className="mt-2 text-[13px] leading-relaxed text-slate-600">{body}</p>
-                </li>
-              ))}
-            </ul>
+            <div className="mt-10">
+              <div className="tools-carousel relative overflow-hidden">
+                <div className="tools-marquee flex w-max gap-5 pb-2">
+                  {TOOL_FEATURES_LOOP.map(({ icon: Icon, title, body }, index) => (
+                    <div
+                      key={`${title}-${index}`}
+                      className="min-w-[260px] max-w-[320px] rounded-xl border border-slate-200/90 bg-slate-50/80 p-5 shadow-sm"
+                    >
+                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#050040]/[0.06] text-[#050040]">
+                        <Icon className="size-4" strokeWidth={2} aria-hidden />
+                      </div>
+                      <h2 className="mt-4 text-sm font-bold text-[#050040]">{title}</h2>
+                      <p className="mt-2 text-[13px] leading-relaxed text-slate-600">{body}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 pb-10 md:px-6">
@@ -68,20 +77,19 @@ export default function ToolsPage() {
               <span className="border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">
                 FREE
               </span>
-              <span className="border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-600">
+              <span className="border border-slate-200 bg-gradient-to-r from-blue-100 to-blue-300 px-2.5 py-1 text-xs font-semibold text-slate-600">
                 2 tools
               </span>
             </div>
-            <div className="text-xs font-semibold text-slate-500">
-              Search by tool, workflow, or output format…
-            </div>
+           
           </div>
         </section>
+
 
         <div className="border border-slate-200 bg-white shadow-sm">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 px-4 py-4 md:px-6">
             <div>
-              <div className="inline-flex items-center gap-2 border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600">
+              <div className="inline-flex items-center gap-2 border border-blue-200 bg-gradient-to-r from-white to-blue-300 px-3 py-1 text-xs font-semibold text-slate-600">
                 <Sparkles className="h-4 w-4 text-slate-500" aria-hidden />
                 Developer Toolkit
               </div>
@@ -96,7 +104,7 @@ export default function ToolsPage() {
               <span className="border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">
                 FREE
               </span>
-              <span className="border border-slate-200 bg-white px-2.5 py-1 text-xs font-semibold text-slate-600">
+              <span className="border border-slate-200 bg-gradient-to-r from-blue-100 to-blue-300 px-2.5 py-1 text-xs font-semibold text-slate-600">
                 2 tools
               </span>
             </div>

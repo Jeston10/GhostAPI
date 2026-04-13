@@ -1,6 +1,7 @@
 "use client";
 
 import { SiteNav } from "@/components/layout/site-nav";
+import { SiteFooter } from "@/components/layout/site-footer";
 import { ApiPlayground } from "@/components/ui/api-playground";
 import { GhostApiWorkflowBlock } from "@/components/ui/n8n-workflow-block-shadcnui";
 import { ProductHighlightCard } from "@/components/ui/product-card";
@@ -168,35 +169,7 @@ export default function HeroSection() {
           </div>
         </section>
 
-        <footer className="border-t border-white/10 bg-black px-4 py-12 text-white">
-          <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center md:flex-row md:items-start md:justify-between md:text-left">
-            <div>
-              <GhostApiLogo heightClass="h-9 md:h-10" className="mx-auto md:mx-0" />
-              <p className="mt-4 max-w-xs text-sm font-medium leading-relaxed text-slate-300 md:mt-5">
-                Instant mock APIs from schema, Bridge frontend and backend
-                workflows without waiting on the server.
-              </p>
-            </div>
-            <nav className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm font-semibold text-slate-300 md:justify-end">
-              <a href="#about" className="transition hover:text-white">
-                About
-              </a>
-              <Link href="/api-hub" className="transition hover:text-white">
-                API Hub
-              </Link>
-              <a href="#playground" className="transition hover:text-white">
-                Playground
-              </a>
-              <a href="#flow" className="transition hover:text-white">
-                Flow
-              </a>
-            </nav>
-          </div>
-          <p className="mx-auto mt-10 max-w-4xl border-t border-white/10 pt-8 text-center text-xs text-slate-400">
-            © {new Date().getFullYear()} API Ghost. Lightweight SaaS for
-            developer productivity.
-          </p>
-        </footer>
+        <SiteFooter />
       </div>
     </>
   );
