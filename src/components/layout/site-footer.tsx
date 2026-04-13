@@ -24,6 +24,12 @@ export function SiteFooter() {
           <Link href="/api-hub" className="transition hover:text-white">
             API Hub
           </Link>
+          <Link href="/privacy-policy" className="transition hover:text-white">
+            Privacy Policy
+          </Link>
+          <Link href="/terms-and-conditions" className="transition hover:text-white">
+            Terms & Conditions
+          </Link>
           <Link href="/#playground" className="transition hover:text-white">
             Playground
           </Link>

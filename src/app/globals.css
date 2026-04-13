@@ -143,6 +143,25 @@
   html::-webkit-scrollbar {
     display: none;
   }
+
+  @keyframes tools-marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .tools-marquee {
+    animation: tools-marquee 28s linear infinite;
+  }
+
+  .tools-marquee:hover,
+  .tools-marquee:focus-visible,
+  .tools-carousel:hover .tools-marquee {
+    animation-play-state: paused;
+  }
 }
 
 
