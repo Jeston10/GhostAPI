@@ -70,6 +70,20 @@ Set the same variables in your host (e.g. Vercel): **`MONGODB_URI`**, optional *
 | `GET /api/free-apis` | Public API catalog JSON (cached; fallback snapshot if remote sources fail). |
 | `POST /api/free-apis/try` | Server-side GET/POST proxy for API Hub “Test” (rate-limited; private/local hosts blocked). |
 
+### Load testing API (v2)
+
+| Endpoint | Notes |
+| --- | --- |
+| `POST /api/tests/start` | Start a load test run with support for `PATCH`/`HEAD`/`OPTIONS`, staged profiles, auth, scenarios, and thresholds. |
+| `GET /api/tests/[id]` | Live test status and rich metrics: status code groups, error taxonomy, trend buckets, threshold results. |
+| `POST /api/tests/[id]/stop` | Request graceful cancellation for queued/running tests. |
+| `GET /api/tests/history` | List recent persisted runs (MongoDB if available; memory fallback). |
+| `POST /api/tests/history` | Rerun a historical config. |
+| `GET /api/tests/compare?baseline=<id>&current=<id>` | Compare two runs (latency, error rate, throughput delta). |
+| `POST /api/tests/trigger` | CI/CD trigger route with token auth (`x-loadtest-token`), disabled by default. |
+
+Feature flags and runtime controls are in `.env.example` under “Load testing runtime controls”.
+
 Provisioned mocks remain in Mongo until deleted; this repo does not add TTL cleanup by default.
 
 ## Tech stack
