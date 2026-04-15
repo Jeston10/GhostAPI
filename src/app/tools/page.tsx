@@ -195,6 +195,7 @@ export default function ToolsPage() {
               </div>
             </div>
 
+
             <div className="grid gap-0 md:grid-cols-[1.2fr_0.8fr]">
               <div className="border-b border-slate-200 px-4 py-4 md:border-b-0 md:border-r md:px-6">
                 <div className="flex items-center gap-3">
