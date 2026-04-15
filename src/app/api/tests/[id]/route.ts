@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { tests } from "../store";
+import { getSchedulerStats, getSnapshotMetrics, tests } from "../store";
+import { flushBucket } from "@/lib/loadtest/metrics";
 
 export async function GET(
   request: Request,
@@ -11,31 +12,40 @@ export async function GET(
     return NextResponse.json({ error: "Test not found." }, { status: 404 });
   }
 
-  const elapsedMs = (test.running ? Date.now() : test.endTime ?? Date.now()) - test.startTime;
-  const elapsedSeconds = Math.max(elapsedMs / 1000, 0.001);
-  const total = test.metrics.total;
-  const avg = total > 0 ? test.metrics.totalTime / total : 0;
-  const times = [...test.metrics.times].sort((a, b) => a - b);
-  const p95 = percentile(times, 95);
-  const p99 = percentile(times, 99);
-  const rps = total / elapsedSeconds;
+  flushBucket(test.metrics);
+  const base = getSnapshotMetrics(test);
+  const statusCodeGroups = {
+    "2xx": 0,
+    "3xx": 0,
+    "4xx": 0,
+    "5xx": 0,
+  };
+
+  for (const [code, count] of Object.entries(test.metrics.statusCodes)) {
+    const num = Number(code);
+    if (num >= 200 && num < 300) statusCodeGroups["2xx"] += count;
+    if (num >= 300 && num < 400) statusCodeGroups["3xx"] += count;
+    if (num >= 400 && num < 500) statusCodeGroups["4xx"] += count;
+    if (num >= 500) statusCodeGroups["5xx"] += count;
+  }
 
   return NextResponse.json({
+    id: test.id,
+    status: test.status,
     running: test.running,
+    queueWaitMs: test.queueWaitMs,
+    lastHeartbeatAt: test.lastHeartbeatAt,
+    error: test.error ?? null,
     metrics: {
-      total,
-      success: test.metrics.success,
-      failed: test.metrics.failed,
-      avg,
-      p95,
-      p99,
-      rps,
+      ...base,
+      inFlight: test.metrics.inFlight,
+      throttledCount: test.metrics.throttledCount,
+      statusCodes: test.metrics.statusCodes,
+      statusCodeGroups,
+      errors: test.metrics.errors,
+      timeBuckets: test.metrics.timeBuckets,
     },
+    thresholds: test.thresholdSummary ?? null,
+    scheduler: getSchedulerStats(),
   });
-}
-
-function percentile(values: number[], percentileValue: number) {
-  if (!values.length) return 0;
-  const index = Math.ceil((percentileValue / 100) * values.length) - 1;
-  return values[Math.min(Math.max(index, 0), values.length - 1)];
 }
