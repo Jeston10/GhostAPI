@@ -9,7 +9,7 @@ const navLinkClass =
   "rounded-md px-1.5 py-1 -mx-0.5 text-[15px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white";
 
 export type SiteNavProps = {
-  currentPage: "home" | "api-hub" | "tools" | "api-testing";
+  currentPage: "home" | "api-hub" | "tools" | "api-testing" | "contact";
   /** `hero` matches the landing hero bar; `compact` matches API Hub / inner pages. */
   variant?: "hero" | "compact";
 };
@@ -126,6 +126,16 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
         <a href={playground} className={cn(navLinkClass, "text-slate-700 hover:text-[#050040]")}>
           Playground
         </a>
+        <Link
+          href="/contact"
+          className={cn(
+            navLinkClass,
+            currentPage === "contact" ? "text-[#050040]" : "text-slate-700 hover:text-[#050040]"
+          )}
+          aria-current={currentPage === "contact" ? "page" : undefined}
+        >
+          Contact
+        </Link>
         <a href={flow} className={cn(navLinkClass, "text-slate-700 hover:text-[#050040]")}>
           How it works
         </a>
@@ -154,16 +164,16 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
         </button>
       </div>
 
-      <a
-        href={playground}
+      <Link
+        href="/contact"
         className={
           isHero
-            ? "hidden rounded-full bg-gray-800 px-6 py-3 font-medium text-white shadow-sm transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/35 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:inline-block"
-            : "hidden shrink-0 rounded-full bg-gray-800 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/35 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:inline-block"
+            ? "hidden rounded-full bg-[#050040] px-6 py-3 font-semibold text-white shadow-md transition hover:bg-[#050040]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:inline-block"
+            : "hidden shrink-0 rounded-full bg-[#050040] px-4 py-2 text-sm font-semibold text-white shadow-md transition hover:bg-[#050040]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:inline-block"
         }
       >
-        Open playground
-      </a>
+        Contact us
+      </Link>
 
       <button
         type="button"

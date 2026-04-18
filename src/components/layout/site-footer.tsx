@@ -57,6 +57,11 @@ export function SiteFooter() {
                     API Hub
                   </Link>
                 </li>
+                <li>
+                  <Link href="/contact" className={linkClass}>
+                    Contact us
+                  </Link>
+                </li>
               </ul>
             </nav>
 
