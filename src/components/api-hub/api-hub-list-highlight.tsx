@@ -15,7 +15,7 @@ export function ApiHubListHighlight({
 }: ApiHubListHighlightProps) {
   return (
     <div
-      className="mb-5 rounded-xl border border-amber-200/50 bg-gradient-to-b from-amber-50/95 to-amber-50/40 px-4 py-3.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.65)] md:px-5"
+      className="mb-5 rounded-xl border border-amber-200/50 bg-gradient-to-b from-amber-50/95 to-amber-50/40 px-4 py-3.5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.65)] sm:rounded-2xl md:px-5"
       role="region"
       aria-label="API Hub at a glance"
     >

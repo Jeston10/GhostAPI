@@ -19,29 +19,29 @@ export default function ContactPage() {
         <SiteNav currentPage="contact" variant="hero" />
       </section>
 
-      <main className="relative mx-auto max-w-6xl px-4 py-12 md:px-6 md:py-16">
+      <main className="relative mx-auto max-w-6xl min-w-0 px-4 py-8 sm:px-5 sm:py-10 md:px-16 md:py-12 lg:px-24 xl:px-32">
         <div
           className="pointer-events-none absolute inset-x-0 top-0 mx-auto h-64 max-w-3xl rounded-full bg-[radial-gradient(ellipse_at_top,oklch(0.55_0.12_270/0.12),transparent_65%)] blur-2xl"
           aria-hidden
         />
 
-        <div className="relative overflow-hidden rounded-2xl border border-slate-200/95 bg-white shadow-sm ring-1 ring-black/[0.04]">
-          <div className="border-b border-slate-200/90 bg-gradient-to-br from-slate-50/90 via-white to-indigo-50/30 px-5 py-8 md:px-10 md:py-10">
+        <div className="relative overflow-hidden rounded-2xl border border-slate-200/95 bg-white shadow-sm ring-1 ring-black/[0.04] sm:rounded-3xl">
+          <div className="border-b border-slate-200/90 bg-gradient-to-br from-slate-50/90 via-white to-indigo-50/30 px-4 py-7 sm:px-5 sm:py-8 md:px-8 md:py-10 lg:px-10">
             <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-blue-600">Contact</p>
-            <h1 className="mt-2 max-w-2xl text-3xl font-extrabold tracking-tight text-[#050040] md:text-4xl">
+            <h1 className="mt-2 max-w-2xl text-2xl font-extrabold tracking-tight text-balance text-[#050040] sm:text-3xl md:text-4xl">
               Let&apos;s build faster APIs together
             </h1>
-            <p className="mt-4 max-w-2xl text-[15px] font-medium leading-relaxed text-slate-700 md:text-base">
+            <p className="mt-4 max-w-2xl text-[15px] font-medium leading-relaxed text-pretty text-slate-700 md:text-base">
               Questions about GhostAPI, the API Hub, or your workflow? Send us a note—we read every message
               and typically reply within a couple of business days.
             </p>
           </div>
 
-          <div className="grid gap-10 p-5 md:gap-12 md:p-10 lg:grid-cols-12">
-            <div className="flex flex-col gap-8 lg:col-span-5">
+          <div className="grid gap-6 p-4 sm:gap-8 sm:p-5 md:gap-9 md:p-8 lg:grid-cols-12 lg:gap-10 lg:p-10">
+            <div className="flex flex-col gap-5 sm:gap-6 lg:col-span-5">
               <a
                 href={`mailto:${SUPPORT_EMAIL}`}
-                className="group flex gap-4 rounded-xl border border-slate-200/95 bg-slate-50/80 p-4 transition hover:border-slate-300 hover:bg-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/20"
+                className="group flex gap-4 rounded-xl border border-slate-200/95 bg-slate-50/80 p-4 transition hover:border-slate-300 hover:bg-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/20 sm:rounded-2xl"
               >
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#050040] text-white shadow-sm">
                   <Mail className="size-5" aria-hidden />
@@ -57,7 +57,7 @@ export default function ContactPage() {
                 </div>
               </a>
 
-              <div className="flex gap-4 rounded-xl border border-slate-200/95 bg-white p-4 shadow-sm">
+              <div className="flex gap-4 rounded-xl border border-slate-200/95 bg-white p-4 shadow-sm sm:rounded-2xl">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#050040]/[0.08] text-[#050040]">
                   <Clock className="size-5" aria-hidden />
                 </span>
@@ -71,7 +71,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="flex gap-4 rounded-xl border border-slate-200/95 bg-white p-4 shadow-sm">
+              <div className="flex gap-4 rounded-xl border border-slate-200/95 bg-white p-4 shadow-sm sm:rounded-2xl">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#050040]/[0.08] text-[#050040]">
                   <MessageCircle className="size-5" aria-hidden />
                 </span>
@@ -98,7 +98,7 @@ export default function ContactPage() {
                 Compose your message here—we&apos;ll pass it to your mail app. Your email address is required so we
                 can reply.
               </p>
-              <div className="mt-6">
+              <div className="mt-4 sm:mt-5">
                 <ContactMailForm />
               </div>
             </div>

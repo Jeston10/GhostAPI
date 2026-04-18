@@ -25,7 +25,7 @@ export function ApiHubShell({
       <section className={navSectionClass}>
         <SiteNav currentPage="api-hub" variant="hero" />
       </section>
-      <div className="relative z-10 px-0 pb-10 md:pb-6">{children}</div>
+      <div className="relative z-10 min-w-0 px-0 pb-8 max-[380px]:pb-10 md:pb-6">{children}</div>
       <SiteFooter />
     </div>
   );

@@ -8,9 +8,9 @@ export default function PrivacyPolicyPage() {
         <SiteNav currentPage="tools" variant="hero" />
       </section>
 
-      <main className="mx-auto w-full max-w-5xl px-4 pb-16 pt-10 md:pt-12">
-        <div className="border border-slate-200 bg-white shadow-sm">
-          <div className="border-b border-slate-200 px-4 py-4 md:px-6">
+      <main className="mx-auto w-full max-w-5xl px-4 pb-12 pt-8 sm:px-5 sm:pb-14 sm:pt-9 md:px-16 md:pb-16 md:pt-10 lg:px-24 xl:px-32">
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm sm:rounded-2xl">
+          <div className="border-b border-slate-200 px-4 py-4 sm:px-5 md:px-6">
             <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-blue-500">
               Privacy Policy
             </p>
@@ -22,7 +22,7 @@ export default function PrivacyPolicyPage() {
             </p>
           </div>
 
-          <div className="space-y-6 px-4 py-5 text-sm text-slate-700 md:px-6">
+          <div className="space-y-6 px-4 py-5 text-sm text-slate-700 sm:px-5 md:px-6">
             <section>
               <h2 className="text-sm font-bold text-[#050040]">Overview</h2>
               <p className="mt-2 leading-relaxed">

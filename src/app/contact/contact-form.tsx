@@ -25,12 +25,12 @@ export function ContactMailForm() {
   }
 
   const inputClass =
-    "mt-1.5 w-full rounded-lg border border-slate-200/95 bg-white px-3 py-2.5 text-sm text-[#050040] shadow-sm outline-none transition placeholder:text-slate-500 focus:border-[#050040]/35 focus:ring-2 focus:ring-[#050040]/15";
+    "mt-1.5 w-full rounded-lg border border-slate-200/95 bg-white px-4 py-2.5 text-sm text-[#050040] shadow-sm outline-none transition placeholder:text-slate-500 focus:border-[#050040]/35 focus:ring-2 focus:ring-[#050040]/15 sm:rounded-xl";
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-5 rounded-xl border border-slate-200/95 bg-slate-50/50 p-5 shadow-inner md:p-6"
+      className="flex flex-col gap-5 rounded-xl border border-slate-200/95 bg-slate-50/50 p-4 shadow-inner sm:rounded-2xl sm:p-5 md:p-6"
     >
       <div>
         <label htmlFor="contact-name" className="text-xs font-bold uppercase tracking-wide text-slate-600">
@@ -94,7 +94,7 @@ export function ContactMailForm() {
       </div>
       <button
         type="submit"
-        className="mt-1 inline-flex w-full items-center justify-center rounded-full bg-[#050040] px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-[#050040]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/40 focus-visible:ring-offset-2 sm:w-auto sm:self-start"
+        className="mt-1 inline-flex w-full touch-manipulation items-center justify-center rounded-full bg-[#050040] px-5 py-3.5 text-sm font-semibold text-white shadow-md transition hover:bg-[#050040]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/40 focus-visible:ring-offset-2 sm:w-auto sm:self-start sm:py-3"
       >
         Open in email app
       </button>

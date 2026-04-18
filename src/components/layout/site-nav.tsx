@@ -6,7 +6,7 @@ import Link from "next/link";
 import * as React from "react";
 
 const navLinkClass =
-  "rounded-md px-1.5 py-1 -mx-0.5 text-[15px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white";
+  "rounded-md px-1.5 py-1 -mx-0.5 text-[15px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white max-md:min-h-11 max-md:px-4 max-md:py-2.5 max-md:text-base";
 
 export type SiteNavProps = {
   currentPage: "home" | "api-hub" | "tools" | "api-testing" | "contact";
@@ -18,9 +18,24 @@ function sectionHref(currentPage: SiteNavProps["currentPage"], hash: string): st
   return currentPage === "api-hub" ? `/${hash}` : hash;
 }
 
+function useMaxMd() {
+  const [maxMd, setMaxMd] = React.useState(false);
+
+  React.useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const sync = () => setMaxMd(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  return maxMd;
+}
+
 export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const menuRef = React.useRef<HTMLDivElement | null>(null);
+  const maxMd = useMaxMd();
 
   React.useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -53,8 +68,8 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
 
   const isHero = variant === "hero";
   const navClass = isHero
-    ? "flex w-full items-center justify-between p-4 text-slate-800 md:px-16 md:py-6 lg:px-24 xl:px-32"
-    : "flex w-full items-center justify-between gap-3 p-4 text-slate-800 md:px-12 md:py-4 lg:px-16";
+    ? "flex w-full items-center justify-between gap-3 px-4 pt-4 pb-4 text-slate-800 max-md:pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-5 md:px-16 md:py-6 lg:px-24 xl:px-32"
+    : "flex w-full items-center justify-between gap-3 px-4 pt-4 pb-4 text-slate-800 max-md:pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-5 md:px-12 md:py-4 lg:px-16";
   const logoClass = isHero
     ? "h-7 md:h-16 lg:h-20 xl:h-24"
     : "h-7 md:h-10";
@@ -73,12 +88,13 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
         id="site-menu"
         ref={menuRef}
         className={[
-          "max-md:absolute max-md:top-0 max-md:left-0 max-md:z-50 max-md:h-full max-md:overflow-hidden max-md:bg-white/92 max-md:backdrop-blur-md max-md:backdrop-saturate-150 max-md:ring-1 max-md:ring-black/[0.06] max-md:transition-all max-md:duration-300",
+          "max-md:absolute max-md:top-0 max-md:left-0 max-md:z-50 max-md:h-[100dvh] max-md:overflow-y-auto max-md:overscroll-contain max-md:bg-white/92 max-md:backdrop-blur-md max-md:backdrop-saturate-150 max-md:ring-1 max-md:ring-black/[0.06] max-md:transition-all max-md:duration-300 max-md:pt-[env(safe-area-inset-top)] max-md:pb-[max(1.5rem,env(safe-area-inset-bottom))]",
           "flex items-center gap-6 font-semibold md:gap-8",
           "max-md:flex-col max-md:justify-center",
-          menuOpen ? "max-md:w-full" : "max-md:w-0",
+          menuOpen ? "max-md:w-full" : "max-md:w-0 max-md:pointer-events-none max-md:invisible",
         ].join(" ")}
-        aria-hidden={!menuOpen}
+        aria-hidden={maxMd && !menuOpen ? true : undefined}
+        inert={maxMd && !menuOpen ? true : undefined}
       >
         <Link
           href="/"
@@ -143,7 +159,7 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
         <button
           type="button"
           onClick={() => setMenuOpen(false)}
-          className="aspect-square rounded-md bg-gray-800 p-2 font-medium text-white transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:hidden"
+          className="aspect-square min-h-11 min-w-11 touch-manipulation rounded-md bg-gray-800 p-2 font-medium text-white transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:hidden"
           aria-label="Close menu"
         >
           <svg
@@ -178,7 +194,7 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
       <button
         type="button"
         onClick={() => setMenuOpen(true)}
-        className="aspect-square rounded-md bg-gray-800 p-2 font-medium text-white transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:hidden"
+        className="aspect-square min-h-11 min-w-11 touch-manipulation rounded-md bg-gray-800 p-2 font-medium text-white transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:hidden"
         aria-label="Open menu"
       >
         <svg

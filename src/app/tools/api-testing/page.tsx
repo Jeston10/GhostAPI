@@ -17,7 +17,7 @@ export default function ApiTestingPage() {
         <SiteNav currentPage="api-testing" variant="hero" />
       </section>
 
-      <main className="mx-auto w-full max-w-6xl px-4 pb-16 pt-8 md:pt-10">
+      <main className="mx-auto w-full max-w-6xl px-4 pb-16 pt-8 sm:px-5 md:px-16 md:pt-10 lg:px-24 xl:px-32">
         <section className=" bg-slate-50 px-5 py-6  md:px-8">
           <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-blue-500">
             API Testing
@@ -32,10 +32,10 @@ export default function ApiTestingPage() {
           </p>
         </section>
 
-        <section className="mt-10 border border-slate-200 bg-white shadow-sm">
+        <section className="mt-7 border border-slate-200 bg-white shadow-sm sm:mt-8 md:mt-9">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 px-5 py-4 md:px-8">
             <div>
-              <div className="inline-flex items-center gap-2 border border-blue-200 bg-gradient-to-r from-white to-blue-100 px-3 py-1 text-xs font-semibold text-slate-600">
+              <div className="inline-flex items-center gap-2 border border-blue-200 bg-gradient-to-r from-white to-blue-100 px-4 py-1 text-xs font-semibold text-slate-600">
                 API Testing Suite
               </div>
               <h2 className="mt-3 text-2xl font-bold tracking-tight text-[#050040]">
@@ -125,16 +125,16 @@ export default function ApiTestingPage() {
                     <ArrowRight className="h-4 w-4" aria-hidden />
                   </Link>
                   <div className="grid grid-cols-2 gap-2">
-                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-600">
+                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-600">
                       VUs + parallel intensity
                     </div>
-                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-600">
+                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-600">
                       Live RPS + latency
                     </div>
-                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-600">
+                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-600">
                       P95/P99 tracking
                     </div>
-                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-600">
+                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-600">
                       JSON report export
                     </div>
                   </div>
@@ -206,16 +206,16 @@ export default function ApiTestingPage() {
                     Coming soon
                   </div>
                   <div className="grid grid-cols-2 gap-2">
-                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500">
+                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-500">
                       Ramp profiles
                     </div>
-                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500">
+                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-500">
                       Failure threshold
                     </div>
-                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500">
+                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-500">
                       Error breakdown
                     </div>
-                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500">
+                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-500">
                       Summary export
                     </div>
                   </div>
@@ -287,16 +287,16 @@ export default function ApiTestingPage() {
                     Coming soon
                   </div>
                   <div className="grid grid-cols-2 gap-2">
-                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500">
+                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-500">
                       Burst profiles
                     </div>
-                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500">
+                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-500">
                       Recovery SLA
                     </div>
-                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500">
+                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-500">
                       Error surge
                     </div>
-                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500">
+                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-500">
                       Summary export
                     </div>
                   </div>
@@ -368,16 +368,16 @@ export default function ApiTestingPage() {
                     Coming soon
                   </div>
                   <div className="grid grid-cols-2 gap-2">
-                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500">
+                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-500">
                       Soak presets
                     </div>
-                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500">
+                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-500">
                       Drift detection
                     </div>
-                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500">
+                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-500">
                       Memory watch
                     </div>
-                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-500">
+                    <div className="inline-flex items-center justify-center border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-500">
                       Summary export
                     </div>
                   </div>

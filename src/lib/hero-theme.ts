@@ -4,4 +4,4 @@ export const HERO_GRID_BACKGROUND =
 
 /** Identical to the homepage hero `<section>` — use with grid background + `SiteNav variant="hero"`. */
 export const HERO_SECTION_CLASS =
-  "w-full bg-cover bg-center bg-no-repeat pb-44 text-sm font-sans text-[#050040]";
+  "w-full bg-cover bg-center bg-no-repeat pb-28 text-sm font-sans text-[#050040] sm:pb-32 md:pb-36 lg:pb-40";

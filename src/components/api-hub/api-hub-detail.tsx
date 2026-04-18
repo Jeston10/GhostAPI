@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export function ApiHubDetail({ entry }: { entry: CuratedApiEntry }) {
   return (
-    <main className="mx-auto max-w-6xl min-w-0 overflow-x-hidden px-4 py-6 md:px-6 md:py-8">
+    <main className="mx-auto max-w-6xl min-w-0 overflow-x-hidden px-4 py-6 sm:px-5 md:px-16 md:py-8 lg:px-24 xl:px-32">
       <Link
         href="/api-hub"
         className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#050040]/75 transition hover:text-[#050040]"
@@ -23,13 +23,13 @@ export function ApiHubDetail({ entry }: { entry: CuratedApiEntry }) {
         <p className="mt-3 max-w-3xl text-[13px] leading-relaxed text-slate-500">{entry.tagline}</p>
 
         <div className="mt-4 flex flex-wrap gap-2">
-          <span className="rounded-md border border-slate-200 bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-[#050040]/80">
+          <span className="rounded-lg border border-slate-200 bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-[#050040]/80 sm:rounded-xl">
             {entry.category}
           </span>
-          <span className="rounded-md border border-slate-200 bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-600">
+          <span className="rounded-lg border border-slate-200 bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-600 sm:rounded-xl">
             {entry.auth === "none" ? "No API key" : "API key may be required"}
           </span>
-          <span className="rounded-md border border-slate-200 bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-600">
+          <span className="rounded-lg border border-slate-200 bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-600 sm:rounded-xl">
             Default {entry.defaultMethod}
           </span>
         </div>

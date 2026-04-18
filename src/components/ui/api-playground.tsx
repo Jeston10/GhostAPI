@@ -263,20 +263,20 @@ export function ApiPlayground({
 
   return (
     <div className="mx-auto w-full max-w-6xl">
-      <h2 className="text-center text-3xl font-bold tracking-tight text-[#050040] md:text-4xl">
+      <h2 className="text-center text-2xl font-bold tracking-tight text-balance text-[#050040] sm:text-3xl md:text-4xl">
         Playground
       </h2>
-      <p className="mx-auto mt-3 max-w-2xl text-center text-sm font-medium leading-relaxed text-slate-700 md:text-base">
+      <p className="mx-auto mt-2 max-w-2xl text-center text-sm font-medium leading-relaxed text-pretty text-slate-700 sm:mt-3 md:text-base">
         Pick <span className="font-semibold text-[#050040]">GET</span> or{" "}
         <span className="font-semibold text-[#050040]">POST</span>,
         define formats, then Submit and Test. POST sends the test body and merges it into the
         generated response.
       </p>
 
-      <div className="mt-8 border border-slate-300 bg-white shadow-sm md:mt-10">
+      <div className="mt-6 min-w-0 overflow-hidden rounded-none border border-slate-300 bg-white shadow-sm sm:mt-7 md:mt-8">
         {/* Toolbar — Postman-style request line */}
-        <div className="flex min-h-10 flex-wrap items-stretch border-b border-slate-300 bg-slate-50/90">
-          <label className="relative flex items-center border-r border-slate-300">
+        <div className="flex min-h-10 min-w-0 flex-col items-stretch border-b border-slate-300 bg-slate-50/90 sm:flex-row sm:flex-wrap">
+          <label className="relative flex w-full items-center border-b border-slate-300 sm:w-auto sm:max-w-[min(100%,11rem)] sm:border-b-0 sm:border-r">
             <span className="sr-only">HTTP method</span>
             <select
               value={method}
@@ -288,7 +288,7 @@ export function ApiPlayground({
                   : undefined
               }
               className={cn(
-                "h-10 min-w-[5.5rem] cursor-pointer appearance-none border-0 bg-transparent py-0 pr-8 pl-3 text-sm font-semibold tracking-wide outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/25 focus-visible:ring-inset disabled:opacity-50",
+                "h-10 min-w-[5.5rem] cursor-pointer appearance-none rounded-none border-0 bg-transparent py-0 pr-8 pl-3 text-sm font-semibold tracking-wide outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/25 focus-visible:ring-inset disabled:opacity-50",
                 METHOD_TAB[method]
               )}
             >
@@ -303,8 +303,8 @@ export function ApiPlayground({
               aria-hidden
             />
           </label>
-          <div className="flex min-w-0 flex-1 items-center px-3 text-sm font-medium text-slate-600">
-            <span className="truncate font-mono text-xs text-slate-500 md:text-sm">
+          <div className="flex min-h-10 min-w-0 flex-1 items-center px-4 py-2 text-sm font-medium text-slate-600 sm:min-h-0 sm:py-0">
+            <span className="min-w-0 break-all font-mono text-[11px] leading-snug text-slate-600 sm:truncate sm:text-xs sm:text-slate-500 md:text-sm">
               {urlPhase === "idle"
                 ? "Submit to provision mock URL"
                 : urlPhase === "resolving"
@@ -315,14 +315,14 @@ export function ApiPlayground({
         </div>
 
         {/* Generation: values used when you Submit to provision the API */}
-        <div className="border-b border-slate-200 bg-slate-100/80 px-3 py-1.5">
+        <div className="border-b border-slate-200 bg-slate-100/80 px-4 py-1.5">
           <p className="text-[0.7rem] font-medium uppercase tracking-wide text-slate-500 md:text-xs">
             API generation — request/response formats
           </p>
         </div>
         <div className="grid divide-y divide-slate-300 md:grid-cols-2 md:divide-x md:divide-y-0">
           <div className="flex min-h-0 flex-col bg-white">
-            <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-3 py-2">
+            <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-4 py-2">
               <span className="text-xs font-bold uppercase tracking-wider text-[#050040]">
                 Request format
               </span>
@@ -332,12 +332,12 @@ export function ApiPlayground({
               value={requestFormat}
               onChange={(e) => setRequestFormat(e.target.value)}
               spellCheck={false}
-              className="min-h-[168px] w-full resize-y border-0 bg-[#fafafa] p-3 font-mono text-xs leading-relaxed text-slate-800 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#050040]/20 md:min-h-[220px] md:p-3.5 md:text-sm"
+              className="min-h-[168px] w-full resize-y border-0 bg-[#fafafa] p-4 font-mono text-xs leading-relaxed text-slate-800 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#050040]/20 md:min-h-[220px] md:p-3.5 md:text-sm"
               aria-label="Request format for API generation"
             />
           </div>
           <div className="flex min-h-0 flex-col bg-white">
-            <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-3 py-2">
+            <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-4 py-2">
               <span className="text-xs font-bold uppercase tracking-wider text-[#050040]">
                 Response format
               </span>
@@ -347,19 +347,19 @@ export function ApiPlayground({
               value={responseFormat}
               onChange={(e) => setResponseFormat(e.target.value)}
               spellCheck={false}
-              className="min-h-[168px] w-full resize-y border-0 bg-[#fafafa] p-3 font-mono text-xs leading-relaxed text-slate-800 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#050040]/20 md:min-h-[220px] md:p-3.5 md:text-sm"
+              className="min-h-[168px] w-full resize-y border-0 bg-[#fafafa] p-4 font-mono text-xs leading-relaxed text-slate-800 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#050040]/20 md:min-h-[220px] md:p-3.5 md:text-sm"
               aria-label="Response format for API generation"
             />
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 border-t border-slate-300 bg-slate-50/80 px-3 py-2.5">
+        <div className="flex flex-col gap-2 border-t border-slate-300 bg-slate-50/80 px-4 py-2.5">
           <div className="flex flex-wrap items-center gap-3">
             <button
               type="button"
               onClick={() => void handleSubmit()}
               disabled={urlPhase === "resolving"}
-              className="rounded-sm bg-[#050040] px-4 py-1.5 text-sm font-semibold text-white transition hover:bg-[#070052] disabled:opacity-60"
+              className="touch-manipulation rounded-none bg-[#050040] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#070052] disabled:opacity-60 sm:py-1.5"
             >
               {urlPhase === "resolving" ? "Provisioning…" : "Submit"}
             </button>
@@ -370,7 +370,7 @@ export function ApiPlayground({
         </div>
 
         {urlPhase !== "idle" && (
-          <div className="border-t border-slate-300 bg-white px-3 py-3">
+          <div className="border-t border-slate-300 bg-white px-4 py-3">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="text-xs font-bold uppercase tracking-wider text-slate-600">
                 Your API
@@ -390,8 +390,8 @@ export function ApiPlayground({
                 </button>
               ) : null}
             </div>
-            <div className="mt-2 flex min-h-9 flex-col overflow-hidden rounded-sm border border-slate-300 bg-white sm:flex-row sm:items-stretch">
-              <div className="flex min-w-0 flex-1 items-center border-b border-slate-300 bg-slate-50 px-3 py-2 sm:border-b-0 sm:border-r sm:py-2">
+            <div className="mt-2 flex min-h-9 flex-col overflow-hidden rounded-none border border-slate-300 bg-white sm:flex-row sm:items-stretch">
+              <div className="flex min-w-0 flex-1 items-center border-b border-slate-300 bg-slate-50 px-4 py-2 sm:border-b-0 sm:border-r sm:py-2">
                 <span className="truncate font-mono text-xs text-[#050040] md:text-sm">
                   {displayUrl}
                 </span>
@@ -401,7 +401,7 @@ export function ApiPlayground({
                   type="button"
                   onClick={() => void runTest()}
                   disabled={urlPhase !== "ready"}
-                  className="inline-flex items-center gap-1.5 bg-white px-3 text-xs font-medium text-[#050040] transition hover:bg-slate-50 disabled:opacity-50 md:text-sm"
+                  className="inline-flex items-center gap-1.5 bg-white px-4 text-xs font-medium text-[#050040] transition hover:bg-slate-50 disabled:opacity-50 md:text-sm"
                 >
                   <Play className="size-3.5 text-[#050040]" aria-hidden />
                   Test
@@ -422,8 +422,8 @@ export function ApiPlayground({
               </div>
             </div>
 
-            <div className="mt-4 border border-slate-200 bg-slate-50/50">
-              <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-slate-200 bg-slate-50 px-3 py-2">
+            <div className="mt-4 rounded-none border border-slate-200 bg-slate-50/50">
+              <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-slate-200 bg-slate-50 px-4 py-2">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#050040]">
                   Test request body
                 </span>
@@ -445,7 +445,7 @@ export function ApiPlayground({
                       : "{ }"
                     : "Available after the mock URL is ready…"
                 }
-                className="min-h-[120px] w-full resize-y border-0 bg-[#fafafa] p-3 font-mono text-xs leading-relaxed text-slate-800 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#050040]/20 disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[140px] md:text-sm"
+                className="min-h-[120px] w-full resize-y border-0 bg-[#fafafa] p-4 font-mono text-xs leading-relaxed text-slate-800 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#050040]/20 disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[140px] md:p-3.5 md:text-sm"
                 aria-label="Request body for this test"
               />
             </div>
@@ -460,14 +460,14 @@ export function ApiPlayground({
 
         {testRun && (
           <div className="border-t border-slate-300 bg-slate-50">
-            <div className="border-b border-slate-200 px-3 py-2.5">
+            <div className="border-b border-slate-200 px-4 py-2.5">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-600">
                   Result
                 </span>
                 <span
                   className={cn(
-                    "rounded-sm border px-2 py-0.5 font-mono text-sm font-semibold",
+                    "rounded-none border px-2 py-0.5 font-mono text-sm font-semibold",
                     statusToneClass(testRun.status)
                   )}
                 >
@@ -480,7 +480,7 @@ export function ApiPlayground({
                   type="button"
                   onClick={() => void runTest()}
                   disabled={urlPhase !== "ready"}
-                  className="inline-flex h-9 items-center gap-1.5 rounded-sm border border-slate-300 bg-white px-3 text-sm font-semibold text-[#050040] transition hover:bg-slate-50 disabled:opacity-50 md:ml-auto"
+                  className="inline-flex h-9 items-center gap-1.5 rounded-none border border-slate-300 bg-white px-4 text-sm font-semibold text-[#050040] transition hover:bg-slate-50 disabled:opacity-50 md:ml-auto"
                 >
                   <RotateCcw className="size-3.5" aria-hidden />
                   Retest
@@ -492,18 +492,18 @@ export function ApiPlayground({
             </div>
             <div className="grid divide-y divide-slate-200 md:grid-cols-2 md:divide-x md:divide-y-0">
               <div className="min-h-0">
-                <div className="bg-white px-3 py-2 text-xs font-bold uppercase tracking-wide text-slate-600">
+                <div className="bg-white px-4 py-2 text-xs font-bold uppercase tracking-wide text-slate-600">
                   Request sent
                 </div>
-                <pre className="max-h-60 overflow-auto whitespace-pre-wrap break-all border-t border-slate-100 bg-[#fafafa] p-3 font-mono text-xs leading-relaxed text-slate-800 md:max-h-80 md:p-3.5 md:text-sm">
+                <pre className="max-h-60 overflow-auto whitespace-pre-wrap break-all border-t border-slate-100 bg-[#fafafa] p-4 font-mono text-xs leading-relaxed text-slate-800 md:max-h-80 md:p-3.5 md:text-sm">
                   {testRun.requestRaw}
                 </pre>
               </div>
               <div className="min-h-0">
-                <div className="bg-white px-3 py-2 text-xs font-bold uppercase tracking-wide text-slate-600">
+                <div className="bg-white px-4 py-2 text-xs font-bold uppercase tracking-wide text-slate-600">
                   Response received
                 </div>
-                <pre className="max-h-60 overflow-auto whitespace-pre-wrap break-all border-t border-slate-100 bg-[#fafafa] p-3 font-mono text-xs leading-relaxed text-slate-800 md:max-h-80 md:p-3.5 md:text-sm">
+                <pre className="max-h-60 overflow-auto whitespace-pre-wrap break-all border-t border-slate-100 bg-[#fafafa] p-4 font-mono text-xs leading-relaxed text-slate-800 md:max-h-80 md:p-3.5 md:text-sm">
                   {testRun.responseRaw}
                 </pre>
               </div>

@@ -15,8 +15,8 @@ function FooterHeading({ id, children }: { id: string; children: React.ReactNode
 export function SiteFooter() {
   return (
     <footer className="border-t border-white/10 bg-black text-white">
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:px-10 md:py-12 lg:px-12">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-x-10 lg:gap-y-0">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-5 sm:py-10 md:px-16 md:py-11 lg:px-24 xl:px-32">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-x-9 lg:gap-y-0 xl:gap-x-10">
           <div className="flex min-w-0 w-full flex-col items-start text-left lg:col-span-5">
             <Link
               href="/"
@@ -33,7 +33,7 @@ export function SiteFooter() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 text-left sm:grid-cols-3 lg:col-span-7 lg:pl-4">
+          <div className="grid grid-cols-1 gap-8 text-left sm:grid-cols-2 sm:gap-x-6 sm:gap-y-6 md:grid-cols-3 md:gap-7 lg:col-span-7 lg:pl-4">
             <nav className="min-w-0" aria-labelledby="footer-product-heading">
               <FooterHeading id="footer-product-heading">Product</FooterHeading>
               <ul className="mt-3 space-y-2.5">
@@ -81,10 +81,7 @@ export function SiteFooter() {
               </ul>
             </nav>
 
-            <nav
-              className="col-span-2 min-w-0 sm:col-span-1"
-              aria-labelledby="footer-legal-heading"
-            >
+            <nav className="min-w-0 sm:col-span-2 md:col-span-1" aria-labelledby="footer-legal-heading">
               <FooterHeading id="footer-legal-heading">Legal</FooterHeading>
               <ul className="mt-3 space-y-2.5">
                 <li>
@@ -102,8 +99,8 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-3 border-t border-white/10 pt-8 text-xs text-slate-400">
-          <p className="w-full text-center">
+        <div className="mt-8 flex flex-col items-center justify-center gap-2 border-t border-white/10 pt-6 text-xs text-slate-400 sm:mt-9 sm:pt-7 md:mt-10 md:pt-8">
+          <p className="w-full max-w-md px-4 text-center text-balance sm:max-w-none sm:px-5">
             © {new Date().getFullYear()} API Ghost. Lightweight SaaS for developer productivity.
           </p>
         </div>

@@ -89,28 +89,28 @@ export const ProductHighlightCard = React.forwardRef<
               transformStyle: "preserve-3d",
             }}
             className={cn(
-              "relative isolate flex h-full min-h-0 w-full flex-col overflow-hidden rounded-2xl border border-slate-200/95 bg-white shadow-md ring-1 ring-black/[0.04] transition-shadow duration-300 hover:shadow-lg",
+              "relative isolate flex h-full min-h-0 w-full flex-col overflow-hidden rounded-2xl border border-slate-200/95 bg-white shadow-md ring-1 ring-black/[0.04] transition-shadow duration-300 hover:shadow-lg sm:rounded-3xl",
               className
             )}
           >
             <div
-              className="relative m-3 flex min-h-0 flex-1 flex-col rounded-xl border border-slate-200/70 bg-slate-50/60 shadow-inner md:m-4"
+              className="relative m-3 flex min-h-0 flex-1 flex-col rounded-lg border border-slate-200/70 bg-slate-50/60 shadow-inner sm:rounded-xl md:rounded-2xl md:m-4"
               style={{ transform: "translateZ(12px)", transformStyle: "preserve-3d" }}
             >
               <div
-                className="pointer-events-none absolute inset-0 rounded-xl bg-[linear-gradient(to_right,#0500400a_1px,transparent_1px),linear-gradient(to_bottom,#0500400a_1px,transparent_1px)] bg-[size:28px_28px] [mask-image:radial-gradient(ellipse_55%_55%_at_50%_45%,#000_65%,transparent_100%)]"
+                className="pointer-events-none absolute inset-0 rounded-lg bg-[linear-gradient(to_right,#0500400a_1px,transparent_1px),linear-gradient(to_bottom,#0500400a_1px,transparent_1px)] bg-[size:28px_28px] [mask-image:radial-gradient(ellipse_55%_55%_at_50%_45%,#000_65%,transparent_100%)] sm:rounded-xl md:rounded-2xl"
                 aria-hidden
               />
 
               <motion.div
-                className="pointer-events-none absolute inset-0 rounded-xl"
+                className="pointer-events-none absolute inset-0 rounded-lg sm:rounded-xl md:rounded-2xl"
                 style={{
                   opacity: glowOpacity,
                   background: glowBackground,
                 }}
               />
 
-              <div className="relative z-10 flex min-h-0 flex-1 flex-col justify-start gap-3 p-5 pb-16 md:p-6 md:pb-20">
+              <div className="relative z-10 flex min-h-0 flex-1 flex-col justify-start gap-3 p-5 pb-12 md:p-6 md:pb-16">
                 <div className="flex items-center gap-2 text-[#050040]">
                   <span className="shrink-0 text-[#050040]">{categoryIcon}</span>
                   <span className="text-xs font-bold tracking-wide uppercase md:text-sm">
