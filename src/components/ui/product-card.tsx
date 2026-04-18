@@ -89,12 +89,12 @@ export const ProductHighlightCard = React.forwardRef<
               transformStyle: "preserve-3d",
             }}
             className={cn(
-              "relative isolate flex h-full min-h-0 w-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md transition-shadow duration-300 hover:shadow-lg",
+              "relative isolate flex h-full min-h-0 w-full flex-col overflow-hidden rounded-2xl border border-slate-200/95 bg-white shadow-md ring-1 ring-black/[0.04] transition-shadow duration-300 hover:shadow-lg",
               className
             )}
           >
             <div
-              className="relative m-3 flex min-h-0 flex-1 flex-col rounded-xl border border-slate-100 bg-slate-50/50 shadow-inner md:m-4"
+              className="relative m-3 flex min-h-0 flex-1 flex-col rounded-xl border border-slate-200/70 bg-slate-50/60 shadow-inner md:m-4"
               style={{ transform: "translateZ(12px)", transformStyle: "preserve-3d" }}
             >
               <div
@@ -126,7 +126,7 @@ export const ProductHighlightCard = React.forwardRef<
                       {title}
                     </h3>
                   )}
-                  <p className="mt-2 text-xs font-medium leading-relaxed text-slate-700 md:text-sm">
+                  <p className="mt-2 text-xs font-medium leading-relaxed text-slate-800 md:text-sm">
                     {description}
                   </p>
                 </div>

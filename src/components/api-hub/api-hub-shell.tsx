@@ -17,8 +17,8 @@ export function ApiHubShell({
 }: ApiHubShellProps) {
   const navSectionClass =
     navVariant === "detail"
-      ? "bg-white text-sm font-sans text-[#050040]"
-      : "bg-white text-sm font-sans text-[#050040] shadow-sm";
+      ? "border-b border-slate-200/90 bg-white text-sm font-sans text-[#050040]"
+      : "border-b border-slate-200/90 bg-white text-sm font-sans text-[#050040] shadow-sm";
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-slate-50 font-sans text-[#050040]">

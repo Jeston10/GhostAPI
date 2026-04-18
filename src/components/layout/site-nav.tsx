@@ -1,8 +1,12 @@
 "use client";
 
 import { GhostApiLogo } from "@/components/ui/ghost-api-logo";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import * as React from "react";
+
+const navLinkClass =
+  "rounded-md px-1.5 py-1 -mx-0.5 text-[15px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white";
 
 export type SiteNavProps = {
   currentPage: "home" | "api-hub" | "tools" | "api-testing";
@@ -60,7 +64,7 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
       <Link
         href="/"
         aria-label="GhostAPI home"
-        className="inline-flex shrink-0 items-center leading-none"
+        className="inline-flex shrink-0 items-center leading-none rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
       >
         <GhostApiLogo priority={isHero} heightClass={logoClass} />
       </Link>
@@ -69,7 +73,7 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
         id="site-menu"
         ref={menuRef}
         className={[
-          "max-md:absolute max-md:top-0 max-md:left-0 max-md:z-50 max-md:h-full max-md:overflow-hidden max-md:bg-white/50 max-md:backdrop-blur max-md:transition-all max-md:duration-300",
+          "max-md:absolute max-md:top-0 max-md:left-0 max-md:z-50 max-md:h-full max-md:overflow-hidden max-md:bg-white/92 max-md:backdrop-blur-md max-md:backdrop-saturate-150 max-md:ring-1 max-md:ring-black/[0.06] max-md:transition-all max-md:duration-300",
           "flex items-center gap-6 font-semibold md:gap-8",
           "max-md:flex-col max-md:justify-center",
           menuOpen ? "max-md:w-full" : "max-md:w-0",
@@ -78,62 +82,58 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
       >
         <Link
           href="/"
-          className={
-            currentPage === "home"
-              ? "text-[#050040]"
-              : "transition-colors hover:text-gray-600"
-          }
+          className={cn(
+            navLinkClass,
+            currentPage === "home" ? "text-[#050040]" : "text-slate-700 hover:text-[#050040]"
+          )}
           aria-current={currentPage === "home" ? "page" : undefined}
         >
           Home
         </Link>
-        <a href={about} className="transition-colors hover:text-gray-600">
+        <a href={about} className={cn(navLinkClass, "text-slate-700 hover:text-[#050040]")}>
           About
         </a>
         <Link
           href="/tools"
-          className={
-            currentPage === "tools"
-              ? "text-[#050040]"
-              : "transition-colors hover:text-gray-600"
-          }
+          className={cn(
+            navLinkClass,
+            currentPage === "tools" ? "text-[#050040]" : "text-slate-700 hover:text-[#050040]"
+          )}
           aria-current={currentPage === "tools" ? "page" : undefined}
         >
           Tools
         </Link>
         <Link
           href="/tools/api-testing"
-          className={
-            currentPage === "api-testing"
-              ? "text-[#050040]"
-              : "transition-colors hover:text-gray-600"
-          }
+          className={cn(
+            navLinkClass,
+            currentPage === "api-testing" ? "text-[#050040]" : "text-slate-700 hover:text-[#050040]"
+          )}
           aria-current={currentPage === "api-testing" ? "page" : undefined}
         >
           API Testing
         </Link>
         <Link
           href="/api-hub"
-          className={
-            currentPage === "api-hub"
-              ? "text-[#050040]"
-              : "transition-colors hover:text-gray-600"
-          }
+          className={cn(
+            navLinkClass,
+            currentPage === "api-hub" ? "text-[#050040]" : "text-slate-700 hover:text-[#050040]"
+          )}
           aria-current={currentPage === "api-hub" ? "page" : undefined}
         >
           API Hub
         </Link>
-        <a href={playground} className="transition-colors hover:text-gray-600">
+        <a href={playground} className={cn(navLinkClass, "text-slate-700 hover:text-[#050040]")}>
           Playground
         </a>
-        <a href={flow} className="transition-colors hover:text-gray-600">
+        <a href={flow} className={cn(navLinkClass, "text-slate-700 hover:text-[#050040]")}>
           How it works
         </a>
 
         <button
           type="button"
           onClick={() => setMenuOpen(false)}
-          className="aspect-square rounded-md bg-gray-800 p-2 font-medium text-white transition hover:bg-black md:hidden"
+          className="aspect-square rounded-md bg-gray-800 p-2 font-medium text-white transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:hidden"
           aria-label="Close menu"
         >
           <svg
@@ -158,8 +158,8 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
         href={playground}
         className={
           isHero
-            ? "hidden rounded-full bg-gray-800 px-6 py-3 font-medium text-white transition hover:bg-black md:inline-block"
-            : "hidden shrink-0 rounded-full bg-gray-800 px-4 py-2 text-sm font-semibold text-white transition hover:bg-black md:inline-block"
+            ? "hidden rounded-full bg-gray-800 px-6 py-3 font-medium text-white shadow-sm transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/35 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:inline-block"
+            : "hidden shrink-0 rounded-full bg-gray-800 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/35 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:inline-block"
         }
       >
         Open playground
@@ -168,7 +168,7 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
       <button
         type="button"
         onClick={() => setMenuOpen(true)}
-        className="aspect-square rounded-md bg-gray-800 p-2 font-medium text-white transition hover:bg-black md:hidden"
+        className="aspect-square rounded-md bg-gray-800 p-2 font-medium text-white transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:hidden"
         aria-label="Open menu"
       >
         <svg

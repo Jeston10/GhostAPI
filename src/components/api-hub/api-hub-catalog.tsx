@@ -65,13 +65,13 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
     <>
       <section className="min-w-0 overflow-x-hidden bg-white">
         <div className="mx-auto max-w-6xl min-w-0 px-4 py-10 md:px-6 md:py-6">
-          <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-blue-500">
+          <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-blue-600">
             API Hub
           </p>
           <h1 className="mt-2 max-w-4xl text-3xl font-extrabold tracking-tight text-[#050040] md:text-[2.125rem] md:leading-tight">
             Explore <span className="text-yellow-500"> 500+ free APIs </span> with a easy to use test console
           </h1>
-          <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-slate-600 md:text-base">
+          <p className="mt-5 max-w-3xl text-[15px] leading-relaxed text-slate-700 md:text-base">
             Browse <span className="font-semibold text-[#050040]/90">500+</span> public HTTPS APIs in a catalog
             that&apos;s <span className="font-semibold text-[#050040]/90">always increasing</span>—we keep adding
             curated endpoints so the list stays useful. Open any entry for full context, then run
@@ -83,13 +83,13 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
             {FEATURES.map(({ icon: Icon, title, body }) => (
               <li
                 key={title}
-                className="rounded-xl border border-slate-200/90 bg-slate-50/80 p-5 shadow-sm"
+                className="rounded-xl border border-slate-200/95 bg-slate-50/90 p-5 shadow-sm ring-1 ring-black/[0.03]"
               >
                 <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#050040]/[0.06] text-[#050040]">
                   <Icon className="size-4" strokeWidth={2} aria-hidden />
                 </div>
                 <h2 className="mt-4 text-sm font-bold text-[#050040]">{title}</h2>
-                <p className="mt-2 text-[13px] leading-relaxed text-slate-600">{body}</p>
+                <p className="mt-2 text-[13px] leading-relaxed text-slate-700">{body}</p>
               </li>
             ))}
           </ul>
@@ -108,13 +108,13 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search by name, category, or topic…"
-              className="h-10 w-full rounded-lg border border-slate-200/90 bg-white py-0 pr-3 pl-9 text-[13px] text-[#050040] shadow-sm outline-none transition placeholder:text-slate-400 focus:border-[#050040]/25 focus:ring-2 focus:ring-[#050040]/10"
+              className="h-10 w-full rounded-lg border border-slate-200/95 bg-white py-0 pr-3 pl-9 text-[13px] text-[#050040] shadow-sm outline-none transition placeholder:text-slate-500 focus:border-[#050040]/35 focus:ring-2 focus:ring-[#050040]/15"
             />
           </div>
           <select
             value={cat}
             onChange={(e) => setCat(e.target.value)}
-            className="h-10 shrink-0 rounded-lg border border-slate-200/90 bg-white px-3 text-[13px] font-medium text-[#050040] shadow-sm outline-none focus:border-[#050040]/25 focus:ring-2 focus:ring-[#050040]/10"
+            className="h-10 shrink-0 rounded-lg border border-slate-200/95 bg-white px-3 text-[13px] font-medium text-[#050040] shadow-sm outline-none focus:border-[#050040]/35 focus:ring-2 focus:ring-[#050040]/15"
             aria-label="Filter by category"
           >
             <option value="">All categories</option>
@@ -126,7 +126,7 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
           </select>
         </div>
 
-        <p className="mt-4 text-[12px] font-medium text-slate-500">
+        <p className="mt-4 text-[12px] font-medium text-slate-600">
           Showing <span className="font-semibold text-slate-700">{filtered.length}</span> of{" "}
           <span className="font-semibold text-slate-700">{apis.length}</span> endpoints
         </p>
@@ -138,10 +138,10 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
           />
         </div>
 
-        <div className="hidden min-w-0 max-w-full overflow-x-hidden rounded-xl border border-slate-200/90 bg-white shadow-sm md:block">
+        <div className="hidden min-w-0 max-w-full overflow-x-hidden rounded-xl border border-slate-200/95 bg-white shadow-sm ring-1 ring-black/[0.03] md:block">
           <table className="w-full table-fixed border-collapse text-left text-[13px]">
             <thead>
-              <tr className="border-b border-slate-200 bg-slate-50/95 text-[0.65rem] font-bold uppercase tracking-wider text-slate-500">
+              <tr className="border-b border-slate-200 bg-slate-50 text-[0.65rem] font-bold uppercase tracking-wider text-slate-600">
                 <th className="w-[22%] px-4 py-3 font-semibold">Category</th>
                 <th className="w-[33%] px-4 py-3 font-semibold">API</th>
                 <th className="hidden px-4 py-3 font-semibold lg:table-cell lg:w-[40%]">Summary</th>
@@ -155,7 +155,7 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
                   tabIndex={0}
                   role="link"
                   aria-label={`Open ${api.name}`}
-                  className="cursor-pointer border-b border-slate-100 transition last:border-0 hover:bg-slate-50/80 focus-visible:bg-slate-50/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/15 focus-visible:ring-inset"
+                  className="cursor-pointer border-b border-slate-100 transition last:border-0 hover:bg-slate-50 focus-visible:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/20 focus-visible:ring-inset"
                   onClick={() => openDetail(api.slug)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") {
@@ -172,10 +172,10 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
                   <td className="min-w-0 px-4 py-3 align-middle font-semibold text-[#050040]">
                     <span className="break-words">{api.name}</span>
                   </td>
-                  <td className="hidden min-w-0 px-4 py-3 align-middle text-slate-600 lg:table-cell">
+                  <td className="hidden min-w-0 px-4 py-3 align-middle text-slate-700 lg:table-cell">
                     <span className="line-clamp-2 break-words text-[13px]">{api.tagline}</span>
                   </td>
-                  <td className="px-2 py-3 align-middle text-right text-slate-400">
+                  <td className="px-2 py-3 align-middle text-right text-slate-500">
                     <span className="inline-flex rounded-md p-1.5" aria-hidden>
                       <ChevronRight className="size-4" />
                     </span>
@@ -192,8 +192,9 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
               <Link
                 href={`/api-hub/${api.slug}`}
                 className={cn(
-                  "flex items-start justify-between gap-3 rounded-xl border border-slate-200/90 bg-white p-4 shadow-sm transition",
-                  "active:bg-slate-50"
+                  "flex items-start justify-between gap-3 rounded-xl border border-slate-200/95 bg-white p-4 shadow-sm ring-1 ring-black/[0.03] transition",
+                  "hover:border-slate-300/95 hover:shadow-md active:bg-slate-50",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/20"
                 )}
               >
                 <div className="min-w-0 flex-1">
@@ -201,16 +202,16 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
                     {api.category}
                   </span>
                   <p className="font-semibold leading-tight text-[#050040]">{api.name}</p>
-                  <p className="mt-1 line-clamp-2 text-[13px] text-slate-600">{api.tagline}</p>
+                  <p className="mt-1 line-clamp-2 text-[13px] text-slate-700">{api.tagline}</p>
                 </div>
-                <ChevronRight className="mt-1 size-4 shrink-0 text-slate-300" aria-hidden />
+                <ChevronRight className="mt-1 size-4 shrink-0 text-slate-400" aria-hidden />
               </Link>
             </li>
           ))}
         </ul>
 
         {filtered.length === 0 ? (
-          <p className="mt-10 rounded-xl border border-dashed border-slate-200 bg-white py-10 text-center text-[13px] text-slate-600">
+          <p className="mt-10 rounded-xl border border-dashed border-slate-300/90 bg-white py-10 text-center text-[13px] text-slate-700">
             No endpoints match your filters. Clear search or pick “All categories”.
           </p>
         ) : null}

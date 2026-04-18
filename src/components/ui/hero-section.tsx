@@ -20,13 +20,13 @@ export default function HeroSection() {
       >
         <SiteNav currentPage="home" variant="hero" />
 
-        <div className="mx-auto mt-40 flex w-max max-w-[calc(100%-2rem)] items-center gap-5 rounded-full border border-slate-300 px-4 py-2 pr-2 hover:border-slate-400/70 md:mt-32 md:gap-8 md:px-5 md:py-2.5 md:pr-2.5">
-          <span className="min-w-0 text-center text-xs font-medium leading-snug text-slate-800 md:text-left md:text-sm">
+        <div className="mx-auto mt-40 flex w-max max-w-[calc(100%-2rem)] items-center gap-5 rounded-full border border-slate-400/80 bg-white/55 px-4 py-2 pr-2 shadow-sm backdrop-blur-sm transition hover:border-slate-500/80 hover:bg-white/70 md:mt-32 md:gap-8 md:px-5 md:py-2.5 md:pr-2.5">
+          <span className="min-w-0 text-center text-xs font-semibold leading-snug text-slate-900 md:text-left md:text-sm">
             Mock APIs in seconds — Define a schema and get a live endpoint
           </span>
           <a
             href="#about"
-            className="flex shrink-0 items-center gap-1.5 rounded-full bg-black px-3 py-1.5 text-xs font-medium text-white shadow-sm transition hover:bg-neutral-900 md:gap-2 md:px-3.5 md:py-2 md:text-sm"
+            className="flex shrink-0 items-center gap-1.5 rounded-full bg-black px-3 py-1.5 text-xs font-semibold text-white shadow-md transition hover:bg-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white/90 md:gap-2 md:px-3.5 md:py-2 md:text-sm"
           >
             <span>Read more</span>
             <svg
@@ -53,7 +53,7 @@ export default function HeroSection() {
           Working mock APIs without a Backend
         </h1>
 
-        <p className="mx-auto mt-6 max-w-2xl text-center text-sm font-medium leading-relaxed text-slate-700 max-md:px-2 md:text-lg">
+        <p className="mx-auto mt-6 max-w-2xl text-center text-sm font-medium leading-relaxed text-slate-800 max-md:px-2 md:text-lg">
           Define your JSON shape, every request returns fresh, realistic mocks.
           Ship the frontend against a live endpoint while the real backend
           catches up.
@@ -62,13 +62,13 @@ export default function HeroSection() {
         <div className="mx-auto mt-4 flex w-full flex-wrap items-center justify-center gap-3 px-4">
           <a
             href="#playground"
-            className="rounded-full bg-slate-800 px-6 py-3 font-semibold text-white transition hover:bg-black"
+            className="rounded-full bg-slate-800 px-6 py-3 font-semibold text-white shadow-md transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/35 focus-visible:ring-offset-2 focus-visible:ring-offset-white/90"
           >
             Get started
           </a>
           <a
             href="#about"
-            className="flex items-center gap-2 rounded-full border border-slate-300 px-6 py-3 font-semibold text-slate-800 transition hover:bg-slate-200/30"
+            className="flex items-center gap-2 rounded-full border border-slate-400/90 bg-white/40 px-6 py-3 font-semibold text-slate-900 shadow-sm backdrop-blur-sm transition hover:border-slate-500 hover:bg-white/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white/90"
           >
             <span>Learn more</span>
             <svg
@@ -99,7 +99,7 @@ export default function HeroSection() {
           <h2 className="text-center text-3xl font-bold tracking-tight text-[#050040] md:text-4xl">
             Get to know more about GhostAPI
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-base font-medium leading-relaxed text-slate-700 md:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-center text-base font-medium leading-relaxed text-slate-800 md:text-lg">
             Lightweight mock endpoints from schema. Realistic data on every call,
             so your UI can move before production APIs exist.
           </p>
@@ -161,7 +161,7 @@ export default function HeroSection() {
           <h2 className="text-center text-3xl font-bold tracking-tight text-[#050040] md:text-4xl">
             Get to know how GhostAPI works
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center font-medium text-slate-700">
+          <p className="mx-auto mt-4 max-w-2xl text-center font-medium text-slate-800">
             Five steps from schema to live Mocks
           </p>
           <div className="mt-10">
