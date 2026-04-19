@@ -30,24 +30,32 @@ interface WorkflowConnection {
   to: string;
 }
 
-/** Card width; height follows copy (no fixed empty area). */
-const NODE_WIDTH = 256;
+interface WorkflowStepDef {
+  id: string;
+  step: string;
+  title: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+/** Card width on desktop canvas (narrower = less horizontal sprawl on laptop). */
+const NODE_WIDTH = 220;
 
 /**
  * Used for zig-zag row gap, SVG connector midpoint, canvas bounds, and drag expansion
  * (approx. half of typical rendered card — lines stay visually centered).
  */
-const EST_CARD_HEIGHT = 248;
+const EST_CARD_HEIGHT = 232;
 
 /** Same PrebuiltUI grid as hero (no extra tint layers — warmth comes from the asset). */
 const FLOW_GRID_BG =
   "https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/hero/gridBackground.png";
 
-const GAP_X = 36;
-const BASE_X = 24;
+const GAP_X = 28;
+const BASE_X = 20;
 /** Odd steps (1,3,5) upper row; even steps (2,4) lower row — zig-zag, no vertical overlap. */
-const Y_HIGH = 24;
-const Y_LOW = Y_HIGH + EST_CARD_HEIGHT + 16;
+const Y_HIGH = 16;
+const Y_LOW = Y_HIGH + EST_CARD_HEIGHT + 8;
 
 function zigZagX(index: number) {
   return BASE_X + index * (NODE_WIDTH + GAP_X);
@@ -57,7 +65,7 @@ function zigZagY(index: number) {
   return index % 2 === 0 ? Y_HIGH : Y_LOW;
 }
 
-const initialNodes: WorkflowNode[] = [
+const WORKFLOW_STEPS: WorkflowStepDef[] = [
   {
     id: "node-1",
     step: "Step 1",
@@ -65,7 +73,6 @@ const initialNodes: WorkflowNode[] = [
     description:
       "Describe response fields and types in JSON—strings, numbers, booleans, nested objects.",
     icon: Braces,
-    position: { x: zigZagX(0), y: zigZagY(0) },
   },
   {
     id: "node-2",
@@ -74,7 +81,6 @@ const initialNodes: WorkflowNode[] = [
     description:
       "Send the structure to API Ghost so it knows what each mock response should look like.",
     icon: FileUp,
-    position: { x: zigZagX(1), y: zigZagY(1) },
   },
   {
     id: "node-3",
@@ -83,7 +89,6 @@ const initialNodes: WorkflowNode[] = [
     description:
       "Get a dedicated GET endpoint you can drop into apps, tests, or prototypes.",
     icon: Link2,
-    position: { x: zigZagX(2), y: zigZagY(2) },
   },
   {
     id: "node-4",
@@ -92,7 +97,6 @@ const initialNodes: WorkflowNode[] = [
     description:
       "Your frontend issues normal GET requests—no special client or SDK required.",
     icon: Radio,
-    position: { x: zigZagX(3), y: zigZagY(3) },
   },
   {
     id: "node-5",
@@ -101,16 +105,22 @@ const initialNodes: WorkflowNode[] = [
     description:
       "Each response is generated on the fly with realistic values (e.g. Faker-style rules).",
     icon: Sparkles,
-    position: { x: zigZagX(4), y: zigZagY(4) },
   },
 ];
 
-const initialConnections: WorkflowConnection[] = [
-  { from: "node-1", to: "node-2" },
-  { from: "node-2", to: "node-3" },
-  { from: "node-3", to: "node-4" },
-  { from: "node-4", to: "node-5" },
-];
+function buildInitialNodes(): WorkflowNode[] {
+  return WORKFLOW_STEPS.map((s, index) => ({
+    ...s,
+    position: { x: zigZagX(index), y: zigZagY(index) },
+  }));
+}
+
+const initialNodes: WorkflowNode[] = buildInitialNodes();
+
+const initialConnections: WorkflowConnection[] = WORKFLOW_STEPS.slice(0, -1).map((_, i) => ({
+  from: WORKFLOW_STEPS[i].id,
+  to: WORKFLOW_STEPS[i + 1].id,
+}));
 
 const nodeCardClass =
   "border-slate-300/90 bg-white text-[#050040] shadow-sm";
@@ -167,7 +177,7 @@ export function GhostApiWorkflowBlock() {
     const maxY = Math.max(
       ...initialNodes.map((n) => n.position.y + EST_CARD_HEIGHT)
     );
-    return { width: maxX + 56, height: maxY + 56 };
+    return { width: maxX + 36, height: maxY + 12 };
   });
 
   useLayoutEffect(() => {
@@ -177,7 +187,7 @@ export function GhostApiWorkflowBlock() {
     function measure() {
       const el = viewportRef.current;
       if (!el) return;
-      const pad = 12;
+      const pad = 6;
       const cw = el.clientWidth - pad * 2;
       const ch = el.clientHeight - pad * 2;
       if (cw <= 0 || ch <= 0) return;
@@ -220,8 +230,8 @@ export function GhostApiWorkflowBlock() {
     });
 
     setContentSize((prev) => ({
-      width: Math.max(prev.width, constrainedX + NODE_WIDTH + 56),
-      height: Math.max(prev.height, constrainedY + EST_CARD_HEIGHT + 56),
+      width: Math.max(prev.width, constrainedX + NODE_WIDTH + 36),
+      height: Math.max(prev.height, constrainedY + EST_CARD_HEIGHT + 12),
     }));
   };
 
@@ -231,128 +241,186 @@ export function GhostApiWorkflowBlock() {
   };
 
   return (
-    <div className="relative w-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
-      <div
-        ref={viewportRef}
-        className="relative h-[min(30rem,85vw)] w-full overflow-hidden rounded-xl border border-slate-200 sm:h-[34rem] md:h-[36rem] lg:h-[38rem]"
-        role="region"
-        aria-label="GhostAPI workflow canvas"
-        tabIndex={0}
-      >
+    <>
+      {/* Mobile: full-width readable steps (canvas scales down and is hard to read on small screens). */}
+      <div className="md:hidden w-full">
+        <ol
+          className="flex list-none flex-col gap-4"
+          aria-label="GhostAPI workflow: five steps from schema to live mocks"
+        >
+          {WORKFLOW_STEPS.map((s, i) => {
+            const Icon = s.icon;
+            const isLast = i === WORKFLOW_STEPS.length - 1;
+            return (
+              <li key={s.id} className="flex flex-col">
+                <Card
+                  className={`rounded-2xl border p-4 shadow-sm ring-1 ring-black/[0.04] sm:rounded-3xl ${nodeCardClass}`}
+                  role="article"
+                  aria-label={`${s.step}: ${s.title}`}
+                >
+                  <div className="flex gap-4">
+                    <div
+                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border ${iconWrapClass}`}
+                      aria-hidden
+                    >
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <Badge
+                        variant="outline"
+                        className="rounded-full border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-bold tracking-wide text-slate-700 uppercase"
+                      >
+                        {s.step}
+                      </Badge>
+                      <h3 className="mt-2 text-lg font-bold leading-snug tracking-tight text-[#050040]">
+                        {s.title}
+                      </h3>
+                      <p className="mt-2.5 text-[15px] font-medium leading-relaxed text-pretty text-slate-700">
+                        {s.description}
+                      </p>
+                      {!isLast ? (
+                        <div className="mt-3 flex items-center gap-1.5 text-xs font-semibold tracking-wide text-slate-500 uppercase">
+                          <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                          <span>Next</span>
+                        </div>
+                      ) : (
+                        <div className="mt-3 flex items-center gap-1.5 text-xs font-semibold tracking-wide text-emerald-700 uppercase">
+                          <Sparkles className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                          <span>Outcome</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </Card>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+
+      <div className="relative hidden w-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:rounded-3xl sm:p-5 md:block md:p-4">
         <div
-          className="pointer-events-none absolute inset-0 rounded-xl bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('${FLOW_GRID_BG}')` }}
-          aria-hidden
-        />
-        <div className="relative z-[1] flex h-full w-full items-center justify-center p-3">
+          ref={viewportRef}
+          className="relative h-[26.5rem] w-full overflow-hidden rounded-xl border border-slate-200 sm:rounded-2xl md:h-[27.5rem] lg:h-[22.5rem] xl:h-[27rem] 2xl:h-[29rem]"
+          role="region"
+          aria-label="GhostAPI workflow canvas"
+          tabIndex={0}
+        >
           <div
-            className="relative shrink-0"
-            style={{
-              width: contentSize.width * scale,
-              height: contentSize.height * scale,
-            }}
-          >
+            className="pointer-events-none absolute inset-0 rounded-xl bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url('${FLOW_GRID_BG}')` }}
+            aria-hidden
+          />
+          <div className="relative z-[1] flex h-full w-full items-center justify-center px-2 py-2 sm:px-3 sm:py-2.5 md:px-2 md:py-1.5">
             <div
-              className="absolute top-0 left-0"
+              className="relative shrink-0"
               style={{
-                width: contentSize.width,
-                height: contentSize.height,
-                transform: `scale(${scale})`,
-                transformOrigin: "top left",
+                width: contentSize.width * scale,
+                height: contentSize.height * scale,
               }}
             >
-              <svg
-                className="pointer-events-none absolute top-0 left-0"
-                width={contentSize.width}
-                height={contentSize.height}
-                style={{ overflow: "visible" }}
-                aria-hidden
+              <div
+                className="absolute top-0 left-0"
+                style={{
+                  width: contentSize.width,
+                  height: contentSize.height,
+                  transform: `scale(${scale})`,
+                  transformOrigin: "top left",
+                }}
               >
-                {connections.map((c) => (
-                  <WorkflowConnectionLine
-                    key={`${c.from}-${c.to}`}
-                    from={c.from}
-                    to={c.to}
-                    nodes={nodes}
-                  />
-                ))}
-              </svg>
+                <svg
+                  className="pointer-events-none absolute top-0 left-0"
+                  width={contentSize.width}
+                  height={contentSize.height}
+                  style={{ overflow: "visible" }}
+                  aria-hidden
+                >
+                  {connections.map((c) => (
+                    <WorkflowConnectionLine
+                      key={`${c.from}-${c.to}`}
+                      from={c.from}
+                      to={c.to}
+                      nodes={nodes}
+                    />
+                  ))}
+                </svg>
 
-              {nodes.map((node) => {
-                const Icon = node.icon;
-                const isDragging = draggingNodeId === node.id;
+                {nodes.map((node) => {
+                  const Icon = node.icon;
+                  const isDragging = draggingNodeId === node.id;
 
-                return (
-                  <motion.div
-                    key={node.id}
-                    drag
-                    dragMomentum={false}
-                    dragConstraints={{
-                      left: 0,
-                      top: 0,
-                      right: 100000,
-                      bottom: 100000,
-                    }}
-                    onDragStart={() => handleDragStart(node.id)}
-                    onDrag={(_, info) => handleDrag(node.id, info)}
-                    onDragEnd={handleDragEnd}
-                    style={{
-                      x: node.position.x,
-                      y: node.position.y,
-                      width: NODE_WIDTH,
-                      transformOrigin: "0 0",
-                    }}
-                    className="absolute h-auto cursor-grab"
-                    initial={{ scale: 0.96, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.2 }}
-                    whileHover={{ scale: 1.02 }}
-                    whileDrag={{ scale: 1.05, zIndex: 50, cursor: "grabbing" }}
-                    aria-grabbed={isDragging}
-                  >
-                    <Card
-                      className={`group/node w-full rounded-xl border p-3.5 transition-all hover:shadow-md sm:p-4 ${nodeCardClass} ${isDragging ? "shadow-lg ring-2 ring-[#050040]/20" : ""}`}
-                      role="article"
-                      aria-label={`${node.step}: ${node.title}`}
+                  return (
+                    <motion.div
+                      key={node.id}
+                      drag
+                      dragMomentum={false}
+                      dragConstraints={{
+                        left: 0,
+                        top: 0,
+                        right: 100000,
+                        bottom: 100000,
+                      }}
+                      onDragStart={() => handleDragStart(node.id)}
+                      onDrag={(_, info) => handleDrag(node.id, info)}
+                      onDragEnd={handleDragEnd}
+                      style={{
+                        x: node.position.x,
+                        y: node.position.y,
+                        width: NODE_WIDTH,
+                        transformOrigin: "0 0",
+                      }}
+                      className="absolute h-auto cursor-grab"
+                      initial={{ scale: 0.96, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.2 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileDrag={{ scale: 1.05, zIndex: 50, cursor: "grabbing" }}
+                      aria-grabbed={isDragging}
                     >
-                      <div className="relative flex flex-col gap-2.5">
-                        <div className="flex items-start gap-2.5">
-                          <div
-                            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${iconWrapClass}`}
-                            aria-hidden
-                          >
-                            <Icon className="h-4 w-4" />
-                          </div>
-                          <div className="min-w-0 flex-1">
-                            <Badge
-                              variant="outline"
-                              className="mb-0.5 rounded-full border-slate-200 bg-slate-50 px-1.5 py-0 text-[10px] font-bold tracking-wide text-slate-700 uppercase"
+                      <Card
+                        className={`group/node w-full rounded-xl border p-3.5 transition-all hover:shadow-md sm:rounded-2xl sm:p-3.5 ${nodeCardClass} ${isDragging ? "shadow-lg ring-2 ring-[#050040]/20" : ""}`}
+                        role="article"
+                        aria-label={`${node.step}: ${node.title}`}
+                      >
+                        <div className="relative flex flex-col gap-2.5 lg:max-xl:items-center lg:max-xl:text-center">
+                          <div className="flex w-full items-start gap-2.5 lg:max-xl:flex-col lg:max-xl:items-center">
+                            <div
+                              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${iconWrapClass}`}
+                              aria-hidden
                             >
-                              {node.step}
-                            </Badge>
-                            <h3 className="text-sm font-bold leading-snug tracking-tight text-[#050040]">
-                              {node.title}
-                            </h3>
+                              <Icon className="h-4 w-4" />
+                            </div>
+                            <div className="min-w-0 flex-1 lg:max-xl:flex-none lg:max-xl:shrink-0">
+                              <Badge
+                                variant="outline"
+                                className="mb-0.5 rounded-full border-slate-200 bg-slate-50 px-1.5 py-0 text-[10px] font-bold tracking-wide text-slate-700 uppercase lg:max-xl:mx-auto"
+                              >
+                                {node.step}
+                              </Badge>
+                              <h3 className="text-sm font-bold leading-snug tracking-tight text-[#050040]">
+                                {node.title}
+                              </h3>
+                            </div>
+                          </div>
+                          <p className="text-[11px] font-medium leading-relaxed text-slate-700 sm:text-xs lg:max-xl:max-w-[18.5rem] lg:max-xl:mx-auto">
+                            {node.description}
+                          </p>
+                          <div className="flex items-center gap-1.5 text-[10px] font-semibold tracking-wide text-slate-600 uppercase sm:text-xs lg:max-xl:justify-center">
+                            <ArrowRight className="h-3 w-3 shrink-0" aria-hidden />
+                            <span>
+                              {node.id === "node-5" ? "Outcome" : "Next"}
+                            </span>
                           </div>
                         </div>
-                        <p className="text-[11px] font-medium leading-relaxed text-slate-700 sm:text-xs">
-                          {node.description}
-                        </p>
-                        <div className="flex items-center gap-1.5 text-[10px] font-semibold tracking-wide text-slate-600 uppercase sm:text-xs">
-                          <ArrowRight className="h-3 w-3 shrink-0" aria-hidden />
-                          <span>
-                            {node.id === "node-5" ? "Outcome" : "Next"}
-                          </span>
-                        </div>
-                      </div>
-                    </Card>
-                  </motion.div>
-                );
-              })}
+                      </Card>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

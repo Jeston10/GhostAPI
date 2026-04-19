@@ -445,7 +445,7 @@ export default function CurlifyPage() {
         <SiteNav currentPage="tools" variant="hero" />
       </section>
 
-      <main className="mx-auto w-full max-w-6xl px-4 pb-20 pt-12 md:pt-16">
+      <main className="mx-auto w-full max-w-6xl px-4 pb-20 pt-10 sm:px-5 sm:pt-12 md:px-16 md:pt-16 lg:px-24 xl:px-32">
         <div className="mx-auto max-w-3xl text-center">
        
           <h1 className="mt-5 text-4xl font-extrabold tracking-tight text-[#050040] md:text-5xl">
@@ -456,7 +456,7 @@ export default function CurlifyPage() {
           </p>
         </div>
 
-        <section className="mt-10 border border-slate-300 bg-white shadow-sm">
+        <section className="mt-7 overflow-hidden rounded-xl border border-slate-300 bg-white shadow-sm sm:mt-8 sm:rounded-2xl md:mt-9">
           <div className="flex min-h-10 flex-wrap items-stretch border-b border-slate-300 bg-slate-50/90">
             <label className="relative flex items-center border-r border-slate-300">
               <span className="sr-only">HTTP method</span>
@@ -476,7 +476,7 @@ export default function CurlifyPage() {
                 aria-hidden
               />
             </label>
-            <div className="flex min-w-0 flex-1 items-center px-3 text-sm font-medium text-slate-600">
+            <div className="flex min-w-0 flex-1 items-center px-4 text-sm font-medium text-slate-600">
               <input
                 type="url"
                 value={url}
@@ -496,7 +496,7 @@ export default function CurlifyPage() {
             </div>
           </div>
 
-          <div className="border-b border-slate-200 bg-slate-100/80 px-3 py-1.5">
+          <div className="border-b border-slate-200 bg-slate-100/80 px-4 py-1.5">
             <p className="text-[0.7rem] font-medium uppercase tracking-wide text-slate-500 md:text-xs">
               Input — headers and body
             </p>
@@ -504,7 +504,7 @@ export default function CurlifyPage() {
 
           <div className="grid divide-y divide-slate-300 md:grid-cols-2 md:divide-x md:divide-y-0">
             <div className="flex min-h-0 flex-col bg-[#fafafa]">
-              <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-3 py-2">
+              <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-4 py-2">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#050040]">
                   Headers (JSON)
                 </span>
@@ -520,14 +520,14 @@ export default function CurlifyPage() {
                 className="min-h-[200px] w-full flex-1 resize-y border-0 bg-transparent p-3 font-mono text-xs leading-relaxed text-slate-800 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#050040]/20 md:min-h-[240px] md:p-3.5 md:text-sm"
               />
               {headersError ? (
-                <div className="border-t border-rose-200 bg-rose-50 px-3 py-2 text-xs font-semibold text-rose-600">
+                <div className="border-t border-rose-200 bg-rose-50 px-4 py-2 text-xs font-semibold text-rose-600">
                   {headersError}
                 </div>
               ) : null}
             </div>
 
             <div className="flex min-h-0 flex-col bg-[#fafafa]">
-              <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-3 py-2">
+              <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-4 py-2">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#050040]">
                   Body (JSON or text)
                 </span>
@@ -542,16 +542,16 @@ export default function CurlifyPage() {
                 className="min-h-[200px] w-full flex-1 resize-y border-0 bg-transparent p-3 font-mono text-xs leading-relaxed text-slate-800 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#050040]/20 md:min-h-[240px] md:p-3.5 md:text-sm"
               />
               {bodyError ? (
-                <div className="border-t border-rose-200 bg-rose-50 px-3 py-2 text-xs font-semibold text-rose-600">
+                <div className="border-t border-rose-200 bg-rose-50 px-4 py-2 text-xs font-semibold text-rose-600">
                   {bodyError}
                 </div>
               ) : null}
             </div>
           </div>
 
-          <div className="flex flex-col gap-2 border-t border-slate-300 bg-slate-50/80 px-3 py-2.5">
+          <div className="flex flex-col gap-2 border-t border-slate-300 bg-slate-50/80 px-4 py-2.5">
             {warning ? (
-              <div className="border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-semibold text-amber-700">
+              <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-2 text-xs font-semibold text-amber-700 sm:rounded-2xl">
                 {warning}
               </div>
             ) : null}
@@ -559,14 +559,14 @@ export default function CurlifyPage() {
               <button
                 type="button"
                 onClick={handleGenerate}
-                className="rounded-sm bg-[#050040] px-4 py-1.5 text-sm font-semibold text-white transition hover:bg-[#070052]"
+                className="rounded-xl bg-[#050040] px-4 py-1.5 text-sm font-semibold text-white transition hover:bg-[#070052] sm:rounded-2xl"
               >
                 Generate Code
               </button>
               <button
                 type="button"
                 onClick={handleTryRequest}
-                className="rounded-sm border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+                className="rounded-xl border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 sm:rounded-2xl"
               >
                 {tryLoading ? "Trying…" : "Try this request"}
               </button>
@@ -577,13 +577,13 @@ export default function CurlifyPage() {
           </div>
 
           <div className="border-t border-slate-300 bg-white">
-            <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 bg-white px-3 py-2">
+            <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 bg-white px-4 py-2">
               {(["curl", "fetch", "axios", "python"] as TabKey[]).map((tab) => (
                 <button
                   key={tab}
                   type="button"
                   onClick={() => setActiveTab(tab)}
-                  className={`rounded-sm px-3 py-1.5 text-xs font-semibold transition md:text-sm ${
+                  className={`rounded-lg px-4 py-1.5 text-xs font-semibold transition sm:rounded-xl md:text-sm ${
                     activeTab === tab
                       ? "bg-[#050040] text-white"
                       : "border border-slate-200 text-slate-600 hover:bg-slate-100"
@@ -596,7 +596,7 @@ export default function CurlifyPage() {
                 type="button"
                 onClick={() => handleCopy(activeTab)}
                 disabled={!output}
-                className="ml-auto inline-flex items-center gap-2 rounded-sm border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-60 md:text-sm"
+                className="ml-auto inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-60 sm:rounded-2xl md:text-sm"
               >
                 {copiedTab === activeTab ? (
                   <>
@@ -626,7 +626,7 @@ export default function CurlifyPage() {
               )}
             </div>
             {tryResult || tryError ? (
-              <div className="border-t border-slate-200 bg-slate-50 px-3 py-2">
+              <div className="border-t border-slate-200 bg-slate-50 px-4 py-2">
                 <div className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Response
                 </div>
@@ -640,7 +640,7 @@ export default function CurlifyPage() {
               </div>
             ) : null}
             {lastConfig ? (
-              <div className="border-t border-slate-200 bg-slate-50 px-3 py-2">
+              <div className="border-t border-slate-200 bg-slate-50 px-4 py-2">
                 <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-slate-500">
                   Parsed config
                   <span className="text-[0.7rem] font-medium text-slate-500">Debug</span>
@@ -681,7 +681,7 @@ export default function CurlifyPage() {
                 <p className="mt-2 text-xs font-semibold text-rose-600">{parseError}</p>
               ) : null}
               {preview ? (
-                <div className="mt-4 border border-slate-200 bg-slate-50 px-3 py-3 text-xs text-slate-700">
+                <div className="mt-4 border border-slate-200 bg-slate-50 px-4 py-3 text-xs text-slate-700">
                   <div className="grid gap-2 md:grid-cols-2">
                     <div>
                       <p className="font-semibold text-slate-500">URL</p>
@@ -713,14 +713,14 @@ export default function CurlifyPage() {
               <button
                 type="button"
                 onClick={() => setShowModal(false)}
-                className="border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700"
+                className="border border-slate-300 px-4 py-1.5 text-xs font-semibold text-slate-700"
               >
                 Cancel
               </button>
               <button
                 type="button"
                 onClick={handleParseCurl}
-                className="border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700"
+                className="border border-slate-300 bg-white px-4 py-1.5 text-xs font-semibold text-slate-700"
               >
                 Parse
               </button>
@@ -728,7 +728,7 @@ export default function CurlifyPage() {
                 type="button"
                 onClick={applyCurl}
                 disabled={!preview}
-                className="bg-[#050040] px-3 py-1.5 text-xs font-semibold text-white disabled:opacity-60"
+                className="bg-[#050040] px-4 py-1.5 text-xs font-semibold text-white disabled:opacity-60"
               >
                 Apply
               </button>

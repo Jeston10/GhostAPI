@@ -266,7 +266,7 @@ export function ApiHubTryPanel({ entry }: { entry: CuratedApiEntry }) {
                 <button
                   type="button"
                   onClick={() => copyText(entry.exampleUrl, "URL copied")}
-                  className="inline-flex items-center gap-1 rounded-md border border-slate-200 bg-white px-2 py-1 text-[11px] font-semibold text-[#050040] transition hover:bg-slate-50"
+                  className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2 py-1 text-[11px] font-semibold text-[#050040] transition hover:bg-slate-50 sm:rounded-xl"
                 >
                   <Copy className="size-3" aria-hidden />
                   Copy
@@ -328,11 +328,11 @@ export function ApiHubTryPanel({ entry }: { entry: CuratedApiEntry }) {
           scenario—responses show real upstream status and body (truncated if very large).
         </p>
 
-        <div className="mt-4 flex min-w-0 flex-col gap-2 rounded-lg border border-slate-200 bg-slate-50/90 p-1 sm:flex-row sm:items-stretch">
+        <div className="mt-4 flex min-w-0 flex-col gap-2 rounded-xl border border-slate-200 bg-slate-50/90 p-1 sm:flex-row sm:items-stretch sm:rounded-2xl">
           <select
             value={method}
             onChange={(e) => setMethod(e.target.value as "GET" | "POST")}
-            className="shrink-0 cursor-pointer rounded-md border border-slate-200 bg-white px-3 py-2.5 text-center text-[11px] font-bold uppercase tracking-wide text-[#050040] shadow-sm outline-none focus:ring-2 focus:ring-[#050040]/15"
+            className="shrink-0 cursor-pointer rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-center text-[11px] font-bold uppercase tracking-wide text-[#050040] shadow-sm outline-none focus:ring-2 focus:ring-[#050040]/15 sm:rounded-2xl"
             aria-label="HTTP method"
           >
             <option value="GET">GET</option>
@@ -343,7 +343,7 @@ export function ApiHubTryPanel({ entry }: { entry: CuratedApiEntry }) {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             placeholder="https://api.example.com/…"
-            className="min-h-[42px] min-w-0 flex-1 rounded-md border border-slate-200 bg-white px-3 py-2 font-mono text-[12px] text-slate-900 shadow-sm outline-none placeholder:text-slate-400 focus:border-[#050040]/25 focus:ring-2 focus:ring-[#050040]/10 md:text-[13px]"
+            className="min-h-[42px] min-w-0 flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2 font-mono text-[12px] text-slate-900 shadow-sm outline-none placeholder:text-slate-400 focus:border-[#050040]/25 focus:ring-2 focus:ring-[#050040]/10 sm:rounded-2xl md:text-[13px]"
             spellCheck={false}
           />
           <div className="flex gap-1.5 sm:shrink-0">
@@ -351,7 +351,7 @@ export function ApiHubTryPanel({ entry }: { entry: CuratedApiEntry }) {
               type="button"
               onClick={send}
               disabled={loading}
-              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-md bg-[#050040] px-4 py-2.5 text-[12px] font-semibold text-white shadow-sm transition hover:bg-[#050040]/92 disabled:opacity-55 sm:flex-initial"
+              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-[#050040] px-4 py-2.5 text-[12px] font-semibold text-white shadow-sm transition hover:bg-[#050040]/92 disabled:opacity-55 sm:flex-initial sm:rounded-2xl"
             >
               {loading ? (
                 <Loader2 className="size-3.5 animate-spin" aria-hidden />
@@ -363,7 +363,7 @@ export function ApiHubTryPanel({ entry }: { entry: CuratedApiEntry }) {
             <button
               type="button"
               onClick={reset}
-              className="inline-flex items-center justify-center gap-1 rounded-md border border-slate-200 bg-white px-3 py-2.5 text-[11px] font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50"
+              className="inline-flex items-center justify-center gap-1 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-[11px] font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 sm:rounded-2xl"
               title="Restore example defaults"
             >
               <RotateCcw className="size-3.5" aria-hidden />
