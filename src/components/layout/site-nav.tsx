@@ -6,7 +6,7 @@ import Link from "next/link";
 import * as React from "react";
 
 const navLinkClass =
-  "rounded-md px-1.5 py-1 -mx-0.5 text-[15px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white max-md:min-h-11 max-md:px-4 max-md:py-2.5 max-md:text-base";
+  " px-1.5 py-1 -mx-0.5 text-[15px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white max-md:min-h-11 max-md:px-4 max-md:py-2.5 max-md:text-base";
 
 export type SiteNavProps = {
   currentPage: "home" | "api-hub" | "tools" | "api-testing" | "contact";
@@ -79,7 +79,7 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
       <Link
         href="/"
         aria-label="GhostAPI home"
-        className="inline-flex shrink-0 items-center leading-none rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+        className="inline-flex shrink-0 items-center leading-none  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
       >
         <GhostApiLogo priority={isHero} heightClass={logoClass} />
       </Link>
@@ -159,7 +159,7 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
         <button
           type="button"
           onClick={() => setMenuOpen(false)}
-          className="aspect-square min-h-11 min-w-11 touch-manipulation rounded-md bg-gray-800 p-2 font-medium text-white transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:hidden"
+          className="aspect-square min-h-11 min-w-11 touch-manipulation  bg-gray-800 p-2 font-medium text-white transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:hidden"
           aria-label="Close menu"
         >
           <svg
@@ -184,8 +184,8 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
         href="/contact"
         className={
           isHero
-            ? "hidden rounded-full bg-[#050040] px-6 py-3 font-semibold text-white shadow-md transition hover:bg-[#050040]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:inline-block"
-            : "hidden shrink-0 rounded-full bg-[#050040] px-4 py-2 text-sm font-semibold text-white shadow-md transition hover:bg-[#050040]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:inline-block"
+            ? "hidden rounded-none bg-[#050040] px-6 py-3 font-semibold text-white transition hover:bg-[#050040]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:inline-block"
+            : "hidden shrink-0 rounded-none bg-[#050040] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#050040]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:inline-block"
         }
       >
         Contact us
@@ -194,7 +194,7 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
       <button
         type="button"
         onClick={() => setMenuOpen(true)}
-        className="aspect-square min-h-11 min-w-11 touch-manipulation rounded-md bg-gray-800 p-2 font-medium text-white transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:hidden"
+        className="aspect-square min-h-11 min-w-11 touch-manipulation  bg-gray-800 p-2 font-medium text-white transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:hidden"
         aria-label="Open menu"
       >
         <svg

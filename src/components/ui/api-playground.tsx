@@ -17,7 +17,7 @@ function statusToneClass(code: number): string {
   if (code === 0) return "bg-slate-950/10 text-slate-700 border-slate-600/20";
   if (code >= 500) return "bg-red-950/10 text-red-800 border-red-800/15";
   if (code >= 400) return "bg-amber-950/10 text-amber-900 border-amber-800/20";
-  if (code >= 300) return "bg-sky-950/10 text-sky-900 border-sky-800/20";
+  if (code >= 300) return "bg-sky-950/10 text-sky-900 border-slate-400/30";
   return "bg-emerald-950/10 text-emerald-800 border-emerald-800/15";
 }
 

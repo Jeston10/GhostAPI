@@ -25,7 +25,7 @@ export default function ContactPage() {
           aria-hidden
         />
 
-        <div className="relative overflow-hidden rounded-2xl border border-slate-200/95 bg-white shadow-sm ring-1 ring-black/[0.04] sm:rounded-3xl">
+        <div className="relative overflow-hidden  border border-slate-200/95 bg-white shadow-sm ring-1 ring-black/[0.04] sm:">
           <div className="border-b border-slate-200/90 bg-gradient-to-br from-slate-50/90 via-white to-indigo-50/30 px-4 py-7 sm:px-5 sm:py-8 md:px-8 md:py-10 lg:px-10">
             <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-blue-600">Contact</p>
             <h1 className="mt-2 max-w-2xl text-2xl font-extrabold tracking-tight text-balance text-[#050040] sm:text-3xl md:text-4xl">
@@ -41,9 +41,9 @@ export default function ContactPage() {
             <div className="flex flex-col gap-5 sm:gap-6 lg:col-span-5">
               <a
                 href={`mailto:${SUPPORT_EMAIL}`}
-                className="group flex gap-4 rounded-xl border border-slate-200/95 bg-slate-50/80 p-4 transition hover:border-slate-300 hover:bg-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/20 sm:rounded-2xl"
+                className="group flex gap-4  border border-slate-200/95 bg-slate-50/80 p-4 transition hover:border-slate-300 hover:bg-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/20 sm:"
               >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#050040] text-white shadow-sm">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center  bg-[#050040] text-white shadow-sm">
                   <Mail className="size-5" aria-hidden />
                 </span>
                 <div className="min-w-0">
@@ -57,8 +57,8 @@ export default function ContactPage() {
                 </div>
               </a>
 
-              <div className="flex gap-4 rounded-xl border border-slate-200/95 bg-white p-4 shadow-sm sm:rounded-2xl">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#050040]/[0.08] text-[#050040]">
+              <div className="flex gap-4  border border-slate-200/95 bg-white p-4 shadow-sm sm:">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center  bg-[#050040]/[0.08] text-[#050040]">
                   <Clock className="size-5" aria-hidden />
                 </span>
                 <div>
@@ -71,8 +71,8 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="flex gap-4 rounded-xl border border-slate-200/95 bg-white p-4 shadow-sm sm:rounded-2xl">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#050040]/[0.08] text-[#050040]">
+              <div className="flex gap-4  border border-slate-200/95 bg-white p-4 shadow-sm sm:">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center  bg-[#050040]/[0.08] text-[#050040]">
                   <MessageCircle className="size-5" aria-hidden />
                 </span>
                 <div>

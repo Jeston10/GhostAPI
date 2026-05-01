@@ -83,9 +83,9 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
             {FEATURES.map(({ icon: Icon, title, body }) => (
               <li
                 key={title}
-                className="rounded-xl border border-slate-200/95 bg-slate-50/90 p-5 shadow-sm ring-1 ring-black/[0.03] sm:rounded-2xl"
+                className=" border border-slate-200/95 bg-slate-50/90 p-5 shadow-sm ring-1 ring-black/[0.03] sm:"
               >
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#050040]/[0.06] text-[#050040]">
+                <div className="flex h-9 w-9 items-center justify-center  bg-[#050040]/[0.06] text-[#050040]">
                   <Icon className="size-4" strokeWidth={2} aria-hidden />
                 </div>
                 <h2 className="mt-4 text-sm font-bold text-[#050040]">{title}</h2>
@@ -108,13 +108,13 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search by name, category, or topic…"
-              className="h-11 w-full rounded-xl border border-slate-200/95 bg-white py-0 pr-4 pl-9 text-[13px] text-[#050040] shadow-sm outline-none transition placeholder:text-slate-500 focus:border-[#050040]/35 focus:ring-2 focus:ring-[#050040]/15 sm:h-10 sm:rounded-2xl touch-manipulation"
+              className="h-11 w-full  border border-slate-200/95 bg-white py-0 pr-4 pl-9 text-[13px] text-[#050040] shadow-sm outline-none transition placeholder:text-slate-500 focus:border-[#050040]/35 focus:ring-2 focus:ring-[#050040]/15 sm:h-10 sm: touch-manipulation"
             />
           </div>
           <select
             value={cat}
             onChange={(e) => setCat(e.target.value)}
-            className="h-11 w-full shrink-0 rounded-xl border border-slate-200/95 bg-white px-4 text-[13px] font-medium text-[#050040] shadow-sm outline-none focus:border-[#050040]/35 focus:ring-2 focus:ring-[#050040]/15 sm:h-10 sm:w-auto sm:rounded-2xl touch-manipulation"
+            className="h-11 w-full shrink-0  border border-slate-200/95 bg-white px-4 text-[13px] font-medium text-[#050040] shadow-sm outline-none focus:border-[#050040]/35 focus:ring-2 focus:ring-[#050040]/15 sm:h-10 sm:w-auto sm: touch-manipulation"
             aria-label="Filter by category"
           >
             <option value="">All categories</option>
@@ -138,7 +138,7 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
           />
         </div>
 
-        <div className="hidden min-w-0 max-w-full overflow-x-hidden rounded-xl border border-slate-200/95 bg-white shadow-sm ring-1 ring-black/[0.03] sm:rounded-2xl md:block">
+        <div className="hidden min-w-0 max-w-full overflow-x-hidden  border border-slate-200/95 bg-white shadow-sm ring-1 ring-black/[0.03] sm: md:block">
           <table className="w-full table-fixed border-collapse text-left text-[13px]">
             <thead>
               <tr className="border-b border-slate-200 bg-slate-50 text-[0.65rem] font-bold uppercase tracking-wider text-slate-600">
@@ -165,7 +165,7 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
                   }}
                 >
                   <td className="min-w-0 px-4 py-3 align-middle">
-                    <span className="inline-block max-w-full break-words rounded-lg border border-slate-200/90 bg-white px-2 py-0.5 text-[11px] font-semibold text-[#050040]/75 sm:rounded-xl">
+                    <span className="inline-block max-w-full break-words  border border-slate-200/90 bg-white px-2 py-0.5 text-[11px] font-semibold text-[#050040]/75 sm:">
                       {api.category}
                     </span>
                   </td>
@@ -176,7 +176,7 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
                     <span className="line-clamp-2 break-words text-[13px]">{api.tagline}</span>
                   </td>
                   <td className="px-2 py-3 align-middle text-right text-slate-500">
-                    <span className="inline-flex rounded-md p-1.5" aria-hidden>
+                    <span className="inline-flex  p-1.5" aria-hidden>
                       <ChevronRight className="size-4" />
                     </span>
                   </td>
@@ -192,7 +192,7 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
               <Link
                 href={`/api-hub/${api.slug}`}
                 className={cn(
-                  "flex items-start justify-between gap-3 rounded-xl border border-slate-200/95 bg-white p-4 shadow-sm ring-1 ring-black/[0.03] transition sm:rounded-2xl",
+                  "flex items-start justify-between gap-3  border border-slate-200/95 bg-white p-4 shadow-sm ring-1 ring-black/[0.03] transition sm:",
                   "hover:border-slate-300/95 hover:shadow-md active:bg-slate-50",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/20"
                 )}
@@ -211,7 +211,7 @@ export function ApiHubCatalog({ apis }: { apis: CuratedApiEntry[] }) {
         </ul>
 
         {filtered.length === 0 ? (
-          <p className="mt-8 rounded-xl border border-dashed border-slate-300/90 bg-white py-8 text-center text-[13px] text-slate-700 sm:mt-9 sm:rounded-2xl sm:py-9">
+          <p className="mt-8  border border-dashed border-slate-300/90 bg-white py-8 text-center text-[13px] text-slate-700 sm:mt-9 sm: sm:py-9">
             No endpoints match your filters. Clear search or pick “All categories”.
           </p>
         ) : null}

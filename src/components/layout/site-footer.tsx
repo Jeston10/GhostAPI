@@ -20,7 +20,7 @@ export function SiteFooter() {
           <div className="flex min-w-0 w-full flex-col items-start text-left lg:col-span-5">
             <Link
               href="/"
-              className="inline-block shrink-0 rounded-md transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="inline-block shrink-0  transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               aria-label="GhostAPI home"
             >
               <GhostApiLogo heightClass="h-8 md:h-9" />

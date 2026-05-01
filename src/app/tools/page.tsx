@@ -36,7 +36,7 @@ export default function ToolsPage() {
       </section>
 
       <main className="mx-auto w-full max-w-6xl min-w-0 px-4 pb-14 pt-6 sm:px-5 sm:pb-16 sm:pt-8 md:px-6 md:pt-10">
-        <section className="mb-6 min-w-0 overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-sm ring-1 ring-black/[0.04] sm:mb-8 sm:rounded-3xl">
+        <section className="mb-6 min-w-0 overflow-hidden  border border-slate-200/90 bg-white shadow-sm ring-1 ring-black/[0.04] sm:mb-8 sm:">
           <div className="mx-auto max-w-6xl min-w-0 px-4 py-8 sm:px-5 sm:py-10 md:px-6 md:py-4 lg:py-3">
             <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-blue-600">
               Tools
@@ -58,9 +58,9 @@ export default function ToolsPage() {
                   {TOOL_FEATURES_LOOP.map(({ icon: Icon, title, body }, index) => (
                     <div
                       key={`${title}-${index}`}
-                      className="min-w-[260px] max-w-[320px] rounded-xl border border-slate-200/90 bg-slate-50/80 p-5 shadow-sm sm:rounded-2xl"
+                      className="min-w-[260px] max-w-[320px]  border border-slate-200/90 bg-slate-50/80 p-5 shadow-sm sm:"
                     >
-                      <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#050040]/[0.06] text-[#050040]">
+                      <div className="flex h-9 w-9 items-center justify-center  bg-[#050040]/[0.06] text-[#050040]">
                         <Icon className="size-4" strokeWidth={2} aria-hidden />
                       </div>
                       <h2 className="mt-4 text-sm font-bold text-[#050040]">{title}</h2>
@@ -86,10 +86,10 @@ export default function ToolsPage() {
         </section>
 
 
-        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm sm:rounded-2xl">
+        <div className="overflow-hidden  border border-slate-200 bg-white shadow-sm sm:">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 px-4 py-4 md:px-6">
             <div>
-              <div className="inline-flex items-center gap-2 border border-blue-200 bg-gradient-to-r from-white to-blue-300 px-4 py-1 text-xs font-semibold text-slate-600">
+              <div className="inline-flex items-center gap-2 border border-slate-200 bg-gradient-to-r from-white to-blue-300 px-4 py-1 text-xs font-semibold text-slate-600">
                 <Sparkles className="h-4 w-4 text-slate-500" aria-hidden />
                 Developer Toolkit
               </div>

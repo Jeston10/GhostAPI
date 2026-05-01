@@ -20,3 +20,7 @@ export function isLoadTestCompareEnabled() {
 export function isLoadTestCiTriggerEnabled() {
   return envFlag("LOADTEST_CI_TRIGGER_ENABLED", false);
 }
+
+export function isSpeedTestEnabled() {
+  return envFlag("SPEEDTEST_ENABLED", true);
+}

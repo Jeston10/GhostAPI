@@ -21,7 +21,7 @@ export default function HeroSection() {
         <SiteNav currentPage="home" variant="hero" />
 
         <div className="w-full px-4 sm:px-5 md:px-16 lg:px-24 xl:px-32">
-          <div className="mx-auto mt-24 max-sm:relative max-sm:-top-12 flex w-full max-w-full flex-col items-stretch gap-3 rounded-2xl border border-slate-400/80 bg-white/55 px-4 py-3 shadow-sm backdrop-blur-sm transition hover:border-slate-500/80 hover:bg-white/70 sm:mt-28 sm:top-0 sm:max-w-[calc(100%-2rem)] sm:flex-row sm:items-center sm:gap-4 sm:rounded-full sm:py-2 sm:pr-2 md:mt-28 md:max-w-none md:w-max md:gap-6 md:px-5 md:py-2.5 md:pr-2.5 lg:mt-32 lg:gap-8">
+          <div className="mx-auto mt-24 max-sm:relative max-sm:-top-12 flex w-full max-w-full flex-col items-stretch gap-3  border border-slate-400/80 bg-white/55 px-4 py-3 shadow-sm backdrop-blur-sm transition hover:border-slate-500/80 hover:bg-white/70 sm:mt-28 sm:top-0 sm:max-w-[calc(100%-2rem)] sm:flex-row sm:items-center sm:gap-4 sm:rounded-full sm:py-2 sm:pr-2 md:mt-28 md:max-w-none md:w-max md:gap-6 md:px-5 md:py-2.5 md:pr-2.5 lg:mt-32 lg:gap-8">
             <span className="min-w-0 text-center text-xs font-semibold leading-snug text-slate-900 sm:text-left md:text-sm">
               Mock APIs in seconds — Define a schema and get a live endpoint
             </span>
