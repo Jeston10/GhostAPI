@@ -23,13 +23,13 @@ export function ApiHubDetail({ entry }: { entry: CuratedApiEntry }) {
         <p className="mt-3 max-w-3xl text-[13px] leading-relaxed text-slate-500">{entry.tagline}</p>
 
         <div className="mt-4 flex flex-wrap gap-2">
-          <span className="rounded-lg border border-slate-200 bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-[#050040]/80 sm:rounded-xl">
+          <span className=" border border-slate-200 bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-[#050040]/80 sm:">
             {entry.category}
           </span>
-          <span className="rounded-lg border border-slate-200 bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-600 sm:rounded-xl">
+          <span className=" border border-slate-200 bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-600 sm:">
             {entry.auth === "none" ? "No API key" : "API key may be required"}
           </span>
-          <span className="rounded-lg border border-slate-200 bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-600 sm:rounded-xl">
+          <span className=" border border-slate-200 bg-white px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-slate-600 sm:">
             Default {entry.defaultMethod}
           </span>
         </div>

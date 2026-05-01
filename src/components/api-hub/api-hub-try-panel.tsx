@@ -236,7 +236,7 @@ export function ApiHubTryPanel({ entry }: { entry: CuratedApiEntry }) {
   const bodyBytes = result?.body ? new TextEncoder().encode(result.body).length : 0;
 
   return (
-    <div className="w-full min-w-0 max-w-full overflow-x-hidden rounded-xl border border-slate-200/95 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_40px_-16px_rgba(5,0,64,0.1)] [word-break:break-word]">
+    <div className="w-full min-w-0 max-w-full overflow-x-hidden  border border-slate-200/95 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_40px_-16px_rgba(5,0,64,0.1)] [word-break:break-word]">
       {/* Reference — same surface as the console (Beeceptor-style technical density) */}
       <div className="border-b border-slate-200 bg-slate-50/90">
         <button
@@ -266,13 +266,13 @@ export function ApiHubTryPanel({ entry }: { entry: CuratedApiEntry }) {
                 <button
                   type="button"
                   onClick={() => copyText(entry.exampleUrl, "URL copied")}
-                  className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2 py-1 text-[11px] font-semibold text-[#050040] transition hover:bg-slate-50 sm:rounded-xl"
+                  className="inline-flex items-center gap-1  border border-slate-200 bg-white px-2 py-1 text-[11px] font-semibold text-[#050040] transition hover:bg-slate-50 sm:"
                 >
                   <Copy className="size-3" aria-hidden />
                   Copy
                 </button>
               </div>
-              <code className="mt-1.5 block break-all rounded-lg border border-slate-200 bg-white px-3 py-2 font-mono text-[11px] leading-relaxed text-slate-800 md:text-[12px]">
+              <code className="mt-1.5 block break-all  border border-slate-200 bg-white px-3 py-2 font-mono text-[11px] leading-relaxed text-slate-800 md:text-[12px]">
                 {entry.exampleUrl}
               </code>
               {entry.docsUrl ? (
@@ -295,7 +295,7 @@ export function ApiHubTryPanel({ entry }: { entry: CuratedApiEntry }) {
                   Request
                 </span>
                 <p className="mt-1 text-[12px] leading-relaxed text-slate-600">{entry.requestNotes}</p>
-                <pre className="mt-2 max-h-40 overflow-x-hidden overflow-y-auto whitespace-pre-wrap break-words rounded-lg border border-slate-200 bg-white p-2.5 font-mono text-[10px] leading-relaxed text-slate-800 [overflow-wrap:anywhere] md:text-[11px]">
+                <pre className="mt-2 max-h-40 overflow-x-hidden overflow-y-auto whitespace-pre-wrap break-words  border border-slate-200 bg-white p-2.5 font-mono text-[10px] leading-relaxed text-slate-800 [overflow-wrap:anywhere] md:text-[11px]">
                   {entry.requestExample}
                 </pre>
               </div>
@@ -304,7 +304,7 @@ export function ApiHubTryPanel({ entry }: { entry: CuratedApiEntry }) {
                   Response
                 </span>
                 <p className="mt-1 text-[12px] leading-relaxed text-slate-600">{entry.responseShape}</p>
-                <pre className="mt-2 max-h-48 overflow-x-hidden overflow-y-auto whitespace-pre-wrap break-words rounded-lg border border-slate-200 bg-white p-2.5 font-mono text-[10px] leading-relaxed text-slate-800 [overflow-wrap:anywhere] md:text-[11px]">
+                <pre className="mt-2 max-h-48 overflow-x-hidden overflow-y-auto whitespace-pre-wrap break-words  border border-slate-200 bg-white p-2.5 font-mono text-[10px] leading-relaxed text-slate-800 [overflow-wrap:anywhere] md:text-[11px]">
                   {entry.responseExample}
                 </pre>
               </div>
@@ -328,11 +328,11 @@ export function ApiHubTryPanel({ entry }: { entry: CuratedApiEntry }) {
           scenario—responses show real upstream status and body (truncated if very large).
         </p>
 
-        <div className="mt-4 flex min-w-0 flex-col gap-2 rounded-xl border border-slate-200 bg-slate-50/90 p-1 sm:flex-row sm:items-stretch sm:rounded-2xl">
+        <div className="mt-4 flex min-w-0 flex-col gap-2  border border-slate-200 bg-slate-50/90 p-1 sm:flex-row sm:items-stretch sm:">
           <select
             value={method}
             onChange={(e) => setMethod(e.target.value as "GET" | "POST")}
-            className="shrink-0 cursor-pointer rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-center text-[11px] font-bold uppercase tracking-wide text-[#050040] shadow-sm outline-none focus:ring-2 focus:ring-[#050040]/15 sm:rounded-2xl"
+            className="shrink-0 cursor-pointer  border border-slate-200 bg-white px-3 py-2.5 text-center text-[11px] font-bold uppercase tracking-wide text-[#050040] shadow-sm outline-none focus:ring-2 focus:ring-[#050040]/15 sm:"
             aria-label="HTTP method"
           >
             <option value="GET">GET</option>
@@ -343,7 +343,7 @@ export function ApiHubTryPanel({ entry }: { entry: CuratedApiEntry }) {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             placeholder="https://api.example.com/…"
-            className="min-h-[42px] min-w-0 flex-1 rounded-xl border border-slate-200 bg-white px-3 py-2 font-mono text-[12px] text-slate-900 shadow-sm outline-none placeholder:text-slate-400 focus:border-[#050040]/25 focus:ring-2 focus:ring-[#050040]/10 sm:rounded-2xl md:text-[13px]"
+            className="min-h-[42px] min-w-0 flex-1  border border-slate-200 bg-white px-3 py-2 font-mono text-[12px] text-slate-900 shadow-sm outline-none placeholder:text-slate-400 focus:border-[#050040]/25 focus:ring-2 focus:ring-[#050040]/10 sm: md:text-[13px]"
             spellCheck={false}
           />
           <div className="flex gap-1.5 sm:shrink-0">
@@ -351,7 +351,7 @@ export function ApiHubTryPanel({ entry }: { entry: CuratedApiEntry }) {
               type="button"
               onClick={send}
               disabled={loading}
-              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-[#050040] px-4 py-2.5 text-[12px] font-semibold text-white shadow-sm transition hover:bg-[#050040]/92 disabled:opacity-55 sm:flex-initial sm:rounded-2xl"
+              className="inline-flex flex-1 items-center justify-center gap-1.5  bg-[#050040] px-4 py-2.5 text-[12px] font-semibold text-white shadow-sm transition hover:bg-[#050040]/92 disabled:opacity-55 sm:flex-initial sm:"
             >
               {loading ? (
                 <Loader2 className="size-3.5 animate-spin" aria-hidden />
@@ -363,7 +363,7 @@ export function ApiHubTryPanel({ entry }: { entry: CuratedApiEntry }) {
             <button
               type="button"
               onClick={reset}
-              className="inline-flex items-center justify-center gap-1 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-[11px] font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 sm:rounded-2xl"
+              className="inline-flex items-center justify-center gap-1  border border-slate-200 bg-white px-3 py-2.5 text-[11px] font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 sm:"
               title="Restore example defaults"
             >
               <RotateCcw className="size-3.5" aria-hidden />
@@ -440,14 +440,14 @@ export function ApiHubTryPanel({ entry }: { entry: CuratedApiEntry }) {
             </span>
             <div className="flex min-w-0 flex-wrap items-center justify-end gap-2">
               {result?.durationMs != null ? (
-                <span className="rounded-md bg-slate-100 px-2 py-0.5 font-mono text-[10px] font-semibold text-slate-600">
+                <span className=" bg-slate-100 px-2 py-0.5 font-mono text-[10px] font-semibold text-slate-600">
                   {result.durationMs} ms
                 </span>
               ) : null}
               {result && !loading ? (
                 <span
                   className={cn(
-                    "rounded-md px-2 py-0.5 font-mono text-[11px] font-bold",
+                    " px-2 py-0.5 font-mono text-[11px] font-bold",
                     result.error
                       ? "bg-red-100 text-red-900"
                       : result.status >= 400
@@ -487,7 +487,7 @@ export function ApiHubTryPanel({ entry }: { entry: CuratedApiEntry }) {
                 {result.error && !result.body ? (
                   <div
                     className={cn(
-                      "rounded-lg border px-3 py-2.5",
+                      " border px-3 py-2.5",
                       result.status === 0 || (result.proxyHttpStatus ?? 0) >= 500
                         ? "border-red-200 bg-red-50/95"
                         : "border-amber-200 bg-amber-50/95"
@@ -542,14 +542,14 @@ export function ApiHubTryPanel({ entry }: { entry: CuratedApiEntry }) {
                 ) : null}
 
                 {result.body && !result.error && isHtmlContentType(result.contentType) ? (
-                  <p className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-[12px] text-amber-950">
+                  <p className=" border border-amber-200 bg-amber-50 px-3 py-2 text-[12px] text-amber-950">
                     Body looks like HTML (documentation or an error page), not JSON. Open the URL in a
                     browser if you expected a JSON API.
                   </p>
                 ) : null}
 
                 {result.body && !result.error ? (
-                  <pre className="max-h-[min(48vh,380px)] max-w-full min-w-0 overflow-x-hidden overflow-y-auto whitespace-pre-wrap break-words rounded-lg border border-slate-200 bg-white p-3 font-mono text-[11px] leading-relaxed text-slate-800 shadow-[inset_0_1px_2px_rgba(15,23,42,0.04)] [overflow-wrap:anywhere] md:text-[12px]">
+                  <pre className="max-h-[min(48vh,380px)] max-w-full min-w-0 overflow-x-hidden overflow-y-auto whitespace-pre-wrap break-words  border border-slate-200 bg-white p-3 font-mono text-[11px] leading-relaxed text-slate-800 shadow-[inset_0_1px_2px_rgba(15,23,42,0.04)] [overflow-wrap:anywhere] md:text-[12px]">
                     {formatMaybeJson(result.body)}
                   </pre>
                 ) : null}

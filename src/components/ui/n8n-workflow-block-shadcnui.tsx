@@ -254,13 +254,13 @@ export function GhostApiWorkflowBlock() {
             return (
               <li key={s.id} className="flex flex-col">
                 <Card
-                  className={`rounded-2xl border p-4 shadow-sm ring-1 ring-black/[0.04] sm:rounded-3xl ${nodeCardClass}`}
+                  className={` border p-4 shadow-sm ring-1 ring-black/[0.04] sm: ${nodeCardClass}`}
                   role="article"
                   aria-label={`${s.step}: ${s.title}`}
                 >
                   <div className="flex gap-4">
                     <div
-                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border ${iconWrapClass}`}
+                      className={`flex h-12 w-12 shrink-0 items-center justify-center  border ${iconWrapClass}`}
                       aria-hidden
                     >
                       <Icon className="h-6 w-6" />
@@ -298,16 +298,16 @@ export function GhostApiWorkflowBlock() {
         </ol>
       </div>
 
-      <div className="relative hidden w-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-3 shadow-sm sm:rounded-3xl sm:p-5 md:block md:p-4">
+      <div className="relative hidden w-full overflow-hidden  border border-slate-200 bg-white p-3 shadow-sm sm: sm:p-5 md:block md:p-4">
         <div
           ref={viewportRef}
-          className="relative h-[26.5rem] w-full overflow-hidden rounded-xl border border-slate-200 sm:rounded-2xl md:h-[27.5rem] lg:h-[22.5rem] xl:h-[27rem] 2xl:h-[29rem]"
+          className="relative h-[26.5rem] w-full overflow-hidden  border border-slate-200 sm: md:h-[27.5rem] lg:h-[22.5rem] xl:h-[27rem] 2xl:h-[29rem]"
           role="region"
           aria-label="GhostAPI workflow canvas"
           tabIndex={0}
         >
           <div
-            className="pointer-events-none absolute inset-0 rounded-xl bg-cover bg-center bg-no-repeat"
+            className="pointer-events-none absolute inset-0  bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url('${FLOW_GRID_BG}')` }}
             aria-hidden
           />
@@ -378,14 +378,14 @@ export function GhostApiWorkflowBlock() {
                       aria-grabbed={isDragging}
                     >
                       <Card
-                        className={`group/node w-full rounded-xl border p-3.5 transition-all hover:shadow-md sm:rounded-2xl sm:p-3.5 ${nodeCardClass} ${isDragging ? "shadow-lg ring-2 ring-[#050040]/20" : ""}`}
+                        className={`group/node w-full  border p-3.5 transition-all hover:shadow-md sm: sm:p-3.5 ${nodeCardClass} ${isDragging ? "shadow-lg ring-2 ring-[#050040]/20" : ""}`}
                         role="article"
                         aria-label={`${node.step}: ${node.title}`}
                       >
                         <div className="relative flex flex-col gap-2.5 lg:max-xl:items-center lg:max-xl:text-center">
                           <div className="flex w-full items-start gap-2.5 lg:max-xl:flex-col lg:max-xl:items-center">
                             <div
-                              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${iconWrapClass}`}
+                              className={`flex h-10 w-10 shrink-0 items-center justify-center  border ${iconWrapClass}`}
                               aria-hidden
                             >
                               <Icon className="h-4 w-4" />

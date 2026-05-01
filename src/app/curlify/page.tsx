@@ -456,7 +456,7 @@ export default function CurlifyPage() {
           </p>
         </div>
 
-        <section className="mt-7 overflow-hidden rounded-xl border border-slate-300 bg-white shadow-sm sm:mt-8 sm:rounded-2xl md:mt-9">
+        <section className="mt-7 overflow-hidden  border border-slate-300 bg-white shadow-sm sm:mt-8 sm: md:mt-9">
           <div className="flex min-h-10 flex-wrap items-stretch border-b border-slate-300 bg-slate-50/90">
             <label className="relative flex items-center border-r border-slate-300">
               <span className="sr-only">HTTP method</span>
@@ -551,7 +551,7 @@ export default function CurlifyPage() {
 
           <div className="flex flex-col gap-2 border-t border-slate-300 bg-slate-50/80 px-4 py-2.5">
             {warning ? (
-              <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-2 text-xs font-semibold text-amber-700 sm:rounded-2xl">
+              <div className=" border border-amber-200 bg-amber-50 px-4 py-2 text-xs font-semibold text-amber-700 sm:">
                 {warning}
               </div>
             ) : null}
@@ -559,14 +559,14 @@ export default function CurlifyPage() {
               <button
                 type="button"
                 onClick={handleGenerate}
-                className="rounded-xl bg-[#050040] px-4 py-1.5 text-sm font-semibold text-white transition hover:bg-[#070052] sm:rounded-2xl"
+                className=" bg-[#050040] px-4 py-1.5 text-sm font-semibold text-white transition hover:bg-[#070052] sm:"
               >
                 Generate Code
               </button>
               <button
                 type="button"
                 onClick={handleTryRequest}
-                className="rounded-xl border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 sm:rounded-2xl"
+                className=" border border-slate-300 bg-white px-4 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 sm:"
               >
                 {tryLoading ? "Trying…" : "Try this request"}
               </button>
@@ -583,7 +583,7 @@ export default function CurlifyPage() {
                   key={tab}
                   type="button"
                   onClick={() => setActiveTab(tab)}
-                  className={`rounded-lg px-4 py-1.5 text-xs font-semibold transition sm:rounded-xl md:text-sm ${
+                  className={` px-4 py-1.5 text-xs font-semibold transition sm: md:text-sm ${
                     activeTab === tab
                       ? "bg-[#050040] text-white"
                       : "border border-slate-200 text-slate-600 hover:bg-slate-100"
@@ -596,7 +596,7 @@ export default function CurlifyPage() {
                 type="button"
                 onClick={() => handleCopy(activeTab)}
                 disabled={!output}
-                className="ml-auto inline-flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-60 sm:rounded-2xl md:text-sm"
+                className="ml-auto inline-flex items-center gap-2  border border-slate-200 px-4 py-1.5 text-xs font-semibold text-slate-600 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-60 sm: md:text-sm"
               >
                 {copiedTab === activeTab ? (
                   <>

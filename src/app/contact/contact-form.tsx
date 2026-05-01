@@ -25,12 +25,12 @@ export function ContactMailForm() {
   }
 
   const inputClass =
-    "mt-1.5 w-full rounded-lg border border-slate-200/95 bg-white px-4 py-2.5 text-sm text-[#050040] shadow-sm outline-none transition placeholder:text-slate-500 focus:border-[#050040]/35 focus:ring-2 focus:ring-[#050040]/15 sm:rounded-xl";
+    "mt-1.5 w-full  border border-slate-200/95 bg-white px-4 py-2.5 text-sm text-[#050040] shadow-sm outline-none transition placeholder:text-slate-500 focus:border-[#050040]/35 focus:ring-2 focus:ring-[#050040]/15 sm:";
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-5 rounded-xl border border-slate-200/95 bg-slate-50/50 p-4 shadow-inner sm:rounded-2xl sm:p-5 md:p-6"
+      className="flex flex-col gap-5  border border-slate-200/95 bg-slate-50/50 p-4 shadow-inner sm: sm:p-5 md:p-6"
     >
       <div>
         <label htmlFor="contact-name" className="text-xs font-bold uppercase tracking-wide text-slate-600">
