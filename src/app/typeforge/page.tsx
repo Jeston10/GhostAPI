@@ -1,6 +1,6 @@
 "use client";
 
-import { SiteFooter } from "@/components/layout/site-footer";
+import { CinematicFooter } from "@/components/ui/motion-footer";
 import { SiteNav } from "@/components/layout/site-nav";
 import { Check, ChevronDown, ClipboardCopy } from "lucide-react";
 import * as React from "react";
@@ -557,7 +557,7 @@ export default function TypeForgePage() {
         </section>
       </main>
 
-      <SiteFooter />
+      <CinematicFooter />
     </div>
   );
 }

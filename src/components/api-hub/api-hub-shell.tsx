@@ -1,4 +1,4 @@
-import { SiteFooter } from "@/components/layout/site-footer";
+import { CinematicFooter } from "@/components/ui/motion-footer";
 import { SiteNav } from "@/components/layout/site-nav";
 
 type ApiHubShellProps = {
@@ -26,7 +26,7 @@ export function ApiHubShell({
         <SiteNav currentPage="api-hub" variant="hero" />
       </section>
       <div className="relative z-10 min-w-0 px-0 pb-8 max-[380px]:pb-10 md:pb-6">{children}</div>
-      <SiteFooter />
+      <CinematicFooter />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { SiteFooter } from "@/components/layout/site-footer";
+import { CinematicFooter } from "@/components/ui/motion-footer";
 import { SiteNav } from "@/components/layout/site-nav";
 import { Check, ChevronDown, ClipboardCopy, Terminal } from "lucide-react";
 import * as React from "react";
@@ -654,7 +654,7 @@ export default function CurlifyPage() {
         </section>
       </main>
 
-      <SiteFooter />
+      <CinematicFooter />
 
       {showModal ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">

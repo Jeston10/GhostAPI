@@ -1,4 +1,4 @@
-import { SiteFooter } from "@/components/layout/site-footer";
+import { CinematicFooter } from "@/components/ui/motion-footer";
 import { SiteNav } from "@/components/layout/site-nav";
 import { Clock, Mail, MessageCircle } from "lucide-react";
 import type { Metadata } from "next";
@@ -106,7 +106,7 @@ export default function ContactPage() {
         </div>
       </main>
 
-      <SiteFooter />
+      <CinematicFooter />
     </div>
   );
 }

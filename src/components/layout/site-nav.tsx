@@ -9,7 +9,7 @@ const navLinkClass =
   " px-1.5 py-1 -mx-0.5 text-[15px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white max-md:min-h-11 max-md:px-4 max-md:py-2.5 max-md:text-base";
 
 export type SiteNavProps = {
-  currentPage: "home" | "api-hub" | "tools" | "api-testing" | "contact";
+  currentPage: "home" | "api-hub" | "tools" | "api-testing" | "contact" | "guides";
   /** `hero` matches the landing hero bar; `compact` matches API Hub / inner pages. */
   variant?: "hero" | "compact";
 };
@@ -63,6 +63,7 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
   }, [menuOpen]);
 
   const about = sectionHref(currentPage, "#about");
+  const ecosystem = sectionHref(currentPage, "#ecosystem");
   const playground = sectionHref(currentPage, "#playground");
   const flow = sectionHref(currentPage, "#flow");
 
@@ -109,6 +110,19 @@ export function SiteNav({ currentPage, variant = "hero" }: SiteNavProps) {
         <a href={about} className={cn(navLinkClass, "text-slate-700 hover:text-[#050040]")}>
           About
         </a>
+        <a href={ecosystem} className={cn(navLinkClass, "text-slate-700 hover:text-[#050040]")}>
+          Platform
+        </a>
+        <Link
+          href="/guides/software-testing"
+          className={cn(
+            navLinkClass,
+            currentPage === "guides" ? "text-[#050040]" : "text-slate-700 hover:text-[#050040]"
+          )}
+          aria-current={currentPage === "guides" ? "page" : undefined}
+        >
+          Guides
+        </Link>
         <Link
           href="/tools"
           className={cn(
