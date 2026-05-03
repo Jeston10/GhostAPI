@@ -1,6 +1,6 @@
 "use client";
 
-import { SiteFooter } from "@/components/layout/site-footer";
+import { CinematicFooter } from "@/components/ui/motion-footer";
 import { SiteNav } from "@/components/layout/site-nav";
 import {
   Activity,
@@ -829,7 +829,7 @@ export default function LoadTestPage() {
         </section>
       </main>
 
-      <SiteFooter />
+      <CinematicFooter />
     </div>
   );
 }

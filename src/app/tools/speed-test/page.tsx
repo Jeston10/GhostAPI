@@ -1,6 +1,6 @@
 "use client";
 
-import { SiteFooter } from "@/components/layout/site-footer";
+import { CinematicFooter } from "@/components/ui/motion-footer";
 import { SiteNav } from "@/components/layout/site-nav";
 import {
   Activity,
@@ -898,7 +898,7 @@ export default function SpeedTestPage() {
         ) : null}
       </main>
 
-      <SiteFooter />
+      <CinematicFooter />
     </div>
   );
 }

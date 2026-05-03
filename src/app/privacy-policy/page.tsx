@@ -1,4 +1,4 @@
-import { SiteFooter } from "@/components/layout/site-footer";
+import { CinematicFooter } from "@/components/ui/motion-footer";
 import { SiteNav } from "@/components/layout/site-nav";
 
 export default function PrivacyPolicyPage() {
@@ -117,7 +117,7 @@ export default function PrivacyPolicyPage() {
         </div>
       </main>
 
-      <SiteFooter />
+      <CinematicFooter />
     </div>
   );
 }

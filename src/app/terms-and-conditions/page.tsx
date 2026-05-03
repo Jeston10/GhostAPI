@@ -1,4 +1,4 @@
-import { SiteFooter } from "@/components/layout/site-footer";
+import { CinematicFooter } from "@/components/ui/motion-footer";
 import { SiteNav } from "@/components/layout/site-nav";
 
 export default function TermsAndConditionsPage() {
@@ -91,7 +91,7 @@ export default function TermsAndConditionsPage() {
         </div>
       </main>
 
-      <SiteFooter />
+      <CinematicFooter />
     </div>
   );
 }

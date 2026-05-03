@@ -1,14 +1,14 @@
 "use client";
 
 import { SiteNav } from "@/components/layout/site-nav";
-import { SiteFooter } from "@/components/layout/site-footer";
 import { ApiPlayground } from "@/components/ui/api-playground";
+import { CinematicFooter } from "@/components/ui/motion-footer";
+import { LandingEcosystemSection } from "@/components/ui/landing-ecosystem-section";
 import { GhostApiWorkflowBlock } from "@/components/ui/n8n-workflow-block-shadcnui";
 import { ProductHighlightCard } from "@/components/ui/product-card";
 import { HERO_GRID_BACKGROUND, HERO_SECTION_CLASS } from "@/lib/hero-theme";
 import { Braces, Ghost, LayoutTemplate, Zap } from "lucide-react";
 import { GhostApiLogo } from "@/components/ui/ghost-api-logo";
-import Link from "next/link";
 import React from "react";
 
 export default function HeroSection() {
@@ -21,36 +21,57 @@ export default function HeroSection() {
         <SiteNav currentPage="home" variant="hero" />
 
         <div className="w-full px-4 sm:px-5 md:px-16 lg:px-24 xl:px-32">
-          <div className="mx-auto mt-24 max-sm:relative max-sm:-top-12 flex w-full max-w-full flex-col items-stretch gap-3  border border-slate-400/80 bg-white/55 px-4 py-3 shadow-sm backdrop-blur-sm transition hover:border-slate-500/80 hover:bg-white/70 sm:mt-28 sm:top-0 sm:max-w-[calc(100%-2rem)] sm:flex-row sm:items-center sm:gap-4 sm:rounded-full sm:py-2 sm:pr-2 md:mt-28 md:max-w-none md:w-max md:gap-6 md:px-5 md:py-2.5 md:pr-2.5 lg:mt-32 lg:gap-8">
-            <span className="min-w-0 text-center text-xs font-semibold leading-snug text-slate-900 sm:text-left md:text-sm">
-              Mock APIs in seconds — Define a schema and get a live endpoint
-            </span>
-            <a
-              href="#about"
-              className="inline-flex shrink-0 items-center justify-center gap-1.5 self-center rounded-full bg-black px-4 py-2.5 text-xs font-semibold text-white shadow-md transition hover:bg-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white/90 max-sm:w-full max-sm:max-w-xs sm:self-auto sm:py-1.5 md:gap-2 md:px-3.5 md:py-2 md:text-sm"
-            >
-              <span>Read more</span>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 19 19"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden
-                className="shrink-0"
+          {/* Mobile: tiny inline hint — low visual weight. sm+: warm-accent pill */}
+          <div className="mx-auto mt-[4.25rem] w-full max-w-full sm:mt-28 md:mt-28 lg:mt-32">
+            <p className="flex flex-wrap items-baseline justify-center gap-x-1.5 gap-y-0.5 text-center sm:hidden">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-amber-700/95">
+                Quick start
+              </span>
+              <span className="text-[10px] font-medium leading-tight text-slate-600">
+                Schema → live endpoint.
+              </span>
+              <a
+                href="#about"
+                className="text-[10px] font-semibold text-[#050040]/85 underline decoration-slate-300 underline-offset-2 transition hover:text-[#050040] hover:decoration-[#050040]/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/50 focus-visible:ring-offset-1 focus-visible:ring-offset-transparent"
               >
-                <path
-                  d="M3.959 9.5h11.083m0 0L9.501 3.958M15.042 9.5l-5.541 5.54"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </a>
+                Read more
+              </a>
+            </p>
+
+            <div className="hidden w-full flex-row items-center gap-4 rounded-full border border-amber-200/70 bg-gradient-to-r from-amber-50/95 via-white/90 to-white/95 py-2 pl-5 pr-2 shadow-sm shadow-amber-950/[0.04] backdrop-blur-sm transition hover:border-amber-300/80 hover:shadow-md sm:flex md:mx-auto md:w-max md:max-w-[min(100%,56rem)] md:gap-6 md:py-2 md:pl-6 md:pr-2">
+              <p className="min-w-0 flex-1 text-left text-sm font-semibold leading-snug tracking-tight text-slate-900 md:text-[0.9375rem]">
+                <span className="mr-2 inline font-bold uppercase tracking-[0.14em] text-yellow-600">
+                  Quick start
+                </span>
+                Mock APIs in seconds — define a schema and get a live endpoint.
+              </p>
+              <a
+                href="#about"
+                className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-full bg-[#050040] px-4 py-2 text-xs font-semibold text-white shadow-md transition hover:bg-[#070052] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#050040]/45 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:gap-2 md:px-4 md:text-sm"
+              >
+                <span>Read more</span>
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 19 19"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden
+                  className="shrink-0"
+                >
+                  <path
+                    d="M3.959 9.5h11.083m0 0L9.501 3.958M15.042 9.5l-5.541 5.54"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
 
-          <h1 className="mx-auto mt-6 max-w-[850px] text-center text-[1.65rem] font-extrabold leading-[1.12] tracking-tight text-balance text-[#050040] sm:mt-7 sm:text-4xl sm:leading-[1.08] md:mt-8 md:text-6xl md:leading-[1.06] lg:text-7xl">
+          <h1 className="mx-auto mt-4 max-w-[850px] text-center text-[1.65rem] font-extrabold leading-[1.12] tracking-tight text-balance text-[#050040] sm:mt-7 sm:text-4xl sm:leading-[1.08] md:mt-8 md:text-6xl md:leading-[1.06] lg:text-7xl">
             Working mock APIs without a Backend
           </h1>
 
@@ -93,7 +114,7 @@ export default function HeroSection() {
         </div>
       </section>
 
-      <div className="bg-slate-50 font-sans text-[#050040]">
+      <div className="relative z-10 rounded-b-[2rem] border-b border-slate-200/90 bg-slate-50 font-sans text-[#050040] shadow-[0_28px_90px_-18px_rgba(5,0,64,0.14)] md:rounded-b-[2.5rem]">
         <section
           id="about"
           className="mx-auto max-w-6xl scroll-mt-20 px-4 py-10 sm:scroll-mt-24 sm:px-5 sm:py-14 md:px-16 md:py-20 lg:px-24 xl:px-32"
@@ -173,8 +194,10 @@ export default function HeroSection() {
           </div>
         </section>
 
-        <SiteFooter />
+        <LandingEcosystemSection />
       </div>
+
+      <CinematicFooter />
     </>
   );
 }

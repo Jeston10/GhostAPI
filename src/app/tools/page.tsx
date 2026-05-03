@@ -1,4 +1,4 @@
-import { SiteFooter } from "@/components/layout/site-footer";
+import { CinematicFooter } from "@/components/ui/motion-footer";
 import { SiteNav } from "@/components/layout/site-nav";
 import { Braces, ArrowRight, Sparkles, Terminal, ShieldCheck } from "lucide-react";
 import Link from "next/link";
@@ -283,7 +283,7 @@ export default function ToolsPage() {
         </div>
       </main>
 
-      <SiteFooter />
+      <CinematicFooter />
     </div>
   );
 }

@@ -172,6 +172,20 @@
   .tools-carousel:hover .tools-marquee {
     animation-play-state: paused;
   }
+
+  /* Landing ecosystem bento — hover shine (21st.dev-style cards) */
+  @keyframes ecosystem-card-shine {
+    from {
+      transform: translateX(-130%) skewX(-12deg);
+    }
+    to {
+      transform: translateX(280%) skewX(-12deg);
+    }
+  }
+
+  #ecosystem .group:hover .ecosystem-card-shine-trail {
+    animation: ecosystem-card-shine 0.88s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
 }
 
 
