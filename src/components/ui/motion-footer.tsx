@@ -109,6 +109,14 @@ const STYLES = `
   background-clip: text;
 }
 
+@media (max-width: 1023px) {
+  .footer-giant-bg-text {
+    font-size: min(42vw, 12rem);
+    opacity: 0.35;
+    -webkit-text-stroke-width: 0.5px;
+  }
+}
+
 .footer-text-glow {
   background: linear-gradient(180deg, var(--foreground) 0%, color-mix(in oklch, var(--foreground) 42%, transparent) 100%);
   -webkit-background-clip: text;
@@ -265,42 +273,42 @@ export function CinematicFooter() {
 
       <div
         ref={wrapperRef}
-        className="relative h-screen w-full"
+        className="relative min-h-[100dvh] w-full lg:h-screen"
         style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
       >
-        <footer className="cinematic-footer-wrapper fixed bottom-0 left-0 flex h-screen w-full flex-col justify-between overflow-hidden bg-background text-foreground">
+        <footer className="cinematic-footer-wrapper relative flex min-h-[100dvh] w-full flex-col bg-background text-foreground lg:fixed lg:bottom-0 lg:h-[100dvh] lg:max-h-[100dvh] lg:justify-between lg:overflow-hidden">
           <div className="footer-aurora pointer-events-none absolute left-1/2 top-1/2 z-0 h-[60vh] w-[80vw] -translate-x-1/2 -translate-y-1/2 animate-footer-breathe rounded-[50%] blur-[80px]" />
           <div className="footer-bg-grid pointer-events-none absolute inset-0 z-0" />
 
           <div
             ref={giantTextRef}
-            className="footer-giant-bg-text pointer-events-none absolute -bottom-[5vh] left-1/2 z-0 -translate-x-1/2 select-none whitespace-nowrap"
+            className="footer-giant-bg-text pointer-events-none absolute -bottom-[2vh] left-1/2 z-0 -translate-x-1/2 select-none whitespace-nowrap lg:-bottom-[5vh]"
             aria-hidden
           >
             GHOST
           </div>
 
-          <div className="absolute left-0 top-12 z-10 w-full -rotate-2 scale-110 overflow-hidden border-y border-border/50 bg-background/60 py-4 shadow-2xl backdrop-blur-md">
+          <div className="absolute left-0 top-8 z-10 w-full -rotate-1 overflow-hidden border-y border-border/50 bg-background/70 py-3 shadow-lg backdrop-blur-md sm:top-10 sm:py-4 lg:top-12 lg:-rotate-2 lg:scale-[1.06] lg:bg-background/60 lg:shadow-2xl">
             <div className="flex w-max animate-footer-scroll-marquee text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground md:text-sm">
               <MarqueeItem />
               <MarqueeItem />
             </div>
           </div>
 
-          <div className="relative z-10 mx-auto mt-20 flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-6">
+          <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-10 pt-[4.75rem] sm:px-6 sm:pb-12 sm:pt-[5.5rem] lg:mt-20 lg:min-h-0 lg:flex-1 lg:justify-center lg:overflow-visible lg:px-6 lg:pb-6 lg:pt-8">
             <h2
               ref={headingRef}
-              className="footer-text-glow mb-12 text-center text-5xl font-black tracking-tighter md:text-8xl"
+              className="footer-text-glow mb-6 max-w-[min(100%,20ch)] text-center text-[clamp(1.75rem,8vw,3.5rem)] font-black leading-[1.08] tracking-tighter sm:max-w-[min(100%,24ch)] md:mb-10 md:text-7xl lg:mb-12 lg:max-w-none lg:text-8xl"
             >
               Build on mocks. Ship with confidence.
             </h2>
 
-            <div ref={linksRef} className="flex w-full flex-col items-center gap-6">
-              <div className="flex w-full flex-wrap justify-center gap-4">
+            <div ref={linksRef} className="flex w-full max-w-2xl flex-col items-stretch gap-5 lg:max-w-none lg:items-center lg:gap-6">
+              <div className="flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
                 <MagneticButton
                   as={Link}
                   href="/#playground"
-                  className="footer-glass-pill group flex items-center gap-3 rounded-full px-10 py-5 text-sm font-bold text-foreground md:text-base"
+                  className="footer-glass-pill group flex w-full shrink-0 items-center justify-center gap-3 rounded-full px-6 py-4 text-sm font-bold text-foreground sm:w-auto sm:px-10 sm:py-5 md:text-base"
                 >
                   <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-foreground/5 text-muted-foreground transition-colors group-hover:text-foreground">
                     <Code2 className="h-5 w-5" aria-hidden />
@@ -311,7 +319,7 @@ export function CinematicFooter() {
                 <MagneticButton
                   as={Link}
                   href="/api-hub"
-                  className="footer-glass-pill group flex items-center gap-3 rounded-full px-10 py-5 text-sm font-bold text-foreground md:text-base"
+                  className="footer-glass-pill group flex w-full shrink-0 items-center justify-center gap-3 rounded-full px-6 py-4 text-sm font-bold text-foreground sm:w-auto sm:px-10 sm:py-5 md:text-base"
                 >
                   <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-foreground/5 text-muted-foreground transition-colors group-hover:text-foreground">
                     <Boxes className="h-5 w-5" aria-hidden />
@@ -323,12 +331,12 @@ export function CinematicFooter() {
               <MagneticButton
                 as={Link}
                 href="/tools"
-                className="footer-glass-pill rounded-full px-12 py-4 text-sm font-bold text-foreground md:text-base"
+                className="footer-glass-pill rounded-full px-5 py-3.5 text-center text-xs font-bold leading-snug text-foreground sm:px-10 sm:py-4 sm:text-sm md:text-base lg:px-12"
               >
                 Developer tools → TypeForge · Curlify · Testing
               </MagneticButton>
 
-              <div className="mt-2 flex w-full flex-wrap justify-center gap-3 md:gap-5">
+              <div className="flex w-full flex-wrap justify-center gap-2 sm:gap-3 md:gap-5">
                 <MagneticButton
                   as={Link}
                   href="/tools/api-testing"
@@ -366,7 +374,7 @@ export function CinematicFooter() {
                 </MagneticButton>
               </div>
 
-              <div className="flex flex-wrap justify-center gap-3 md:gap-6">
+              <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-6">
                 <MagneticButton
                   as={Link}
                   href="/guides/software-testing"
@@ -399,7 +407,7 @@ export function CinematicFooter() {
             </div>
           </div>
 
-          <div className="relative z-20 flex w-full flex-col items-center justify-between gap-6 px-6 pb-8 md:flex-row md:px-12">
+          <div className="relative z-20 mt-auto flex w-full shrink-0 flex-col items-center justify-between gap-4 border-t border-border/30 bg-background/95 px-4 py-5 backdrop-blur-md sm:gap-5 sm:px-6 md:flex-row md:gap-6 md:px-12 md:pb-8 lg:border-transparent lg:bg-transparent lg:backdrop-blur-none">
             <div className="order-2 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground md:order-1 md:text-xs">
               © {year} API Ghost. All rights reserved.
             </div>
